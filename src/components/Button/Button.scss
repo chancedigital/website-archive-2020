@@ -1,0 +1,221 @@
+.Button {
+
+  &,
+  &:link,
+  &:visited {
+    @include font-accent;
+    display: inline-block;
+    position: relative;
+    width: auto;
+    height: auto;
+    margin-right: $mg-horiz / 2;
+    margin-bottom: $mg-vertical-sm / 2;
+    padding: $mg-horiz;
+    transition: all 200ms;
+    border: 2px solid $color-link;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: $color-black;
+    font-size: rem(14);
+    font-weight: 600;
+    text-align: center;
+    text-shadow: none;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all 0.5s;
+    background: $color-link;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translate(0, 0);
+    transition: all 0.2s;
+    border-color: $color-white;
+    outline: none;
+    color: $color-white;
+    text-decoration: none;
+
+    &:before {
+      transform: scaleX(1);
+    }
+  }
+
+  &:hover:not(:active) {
+    transform: translate(4px, -4px);
+    box-shadow: -4px 4px 0 $color-link;
+  }
+
+  &[disabled] {
+    opacity: 0.3;
+    cursor: default;
+
+    &:before {
+      display: none !important;
+    }
+
+    &:hover,
+    &:active {
+      transform: translate(0, 0) !important;
+      box-shadow: none !important;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: $color-link;
+      background: transparent;
+      color: $color-black;
+    }
+  } // [disabled]
+
+  &--block {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: $mg-vertical-sm;
+  } // --block
+
+  &--secondary {
+
+    &,
+    &:link,
+    &:visited {
+      border-color: $color-accent;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: $color-white;
+      color: $color-white;
+    }
+
+    &:hover:not(:active) {
+      box-shadow: -4px 4px 0 $color-accent;
+    }
+
+    &:before {
+      background: $color-accent;
+    }
+
+    &[disabled] {
+      &:hover,
+      &:focus {
+        border-color: $color-accent;
+        background: transparent;
+        color: $color-black;
+      }
+    }
+
+  } // --secondary
+
+  &--tertiary {
+
+    &,
+    &:link,
+    &:visited {
+      border-color: $color-text-default;
+      color: $color-text-default;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: $color-white;
+      color: $color-white;
+    }
+
+    &:hover:not(:active) {
+      box-shadow: -4px 4px 0 $color-text-default;
+    }
+
+    &:before {
+      background: $color-text-default;
+    }
+
+    &[disabled] {
+      &:hover,
+      &:focus {
+        border-color: $color-text-default;
+        background: transparent;
+        color: $color-text-default;
+      }
+    }
+  } // --tertiary
+
+  &--inverted {
+
+    &,
+    &:link,
+    &:visited {
+      border-color: $color-white;
+      background: none;
+      color: $color-white;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: $color-white;
+      color: $color-link;
+    }
+
+    &:before {
+      background: $color-white;
+    }
+  } // --inverted
+
+  &--small {
+    padding: #{$mg-horiz / 2};
+    border-width: 1px;
+    font-size: rem(12);
+  } // --small
+
+  &--loading {
+
+    &:after {
+      display: none;
+    }
+
+    .loading--active {
+      margin-bottom: -1px;
+      margin-left: $mg-horiz / 2;
+    }
+
+    &:hover .loading--active,
+    &:focus .loading--active {
+      @include icon("spinner", "white");
+    }
+
+  } // --loading
+}
+
+// Overrides for submit input buttons.
+// Input elements do not support pseudo elements :(
+input[type="submit"] {
+  @extend .Button;
+
+  &.Button {
+    @include button-hover-override($color-link);
+  }
+
+  &.Button--secondary {
+    @include button-hover-override($color-accent);
+  }
+
+  &.Button--tertiary {
+    @include button-hover-override($color-text-default);
+  }
+
+  &.Button--inverted {
+    @include button-hover-override($color-white);
+  }
+}

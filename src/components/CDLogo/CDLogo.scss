@@ -1,0 +1,90 @@
+.CDLogo {
+  $self: &;
+  display: inline-block;
+  width: 284px;
+  height: 48px;
+  margin: $mg-vertical-sm $mg-horiz;
+  overflow: hidden;
+  opacity: 1;
+  background: url("#{$path-img}/logos/logo-long-box-color.svg") no-repeat center center;
+  background-size: contain;
+  text-indent: 100%;
+  vertical-align: top;
+  white-space: nowrap;
+
+  &--noMargin {
+    margin: 0;
+  }
+
+  &--black {
+    background-image: url("#{$path-img}/logos/logo-long-box-black.svg");
+  }
+
+  &--white {
+    background-image: url("#{$path-img}/logos/logo-long-box-white.svg");
+  }
+
+  &--alt {
+    width: 107px;
+    height: 60px;
+    background-image: url("#{$path-img}/logos/logo-short-color.svg");
+
+    &#{$self}--black {
+      background-image: url("#{$path-img}/logos/logo-short-black.svg");
+    }
+
+    &#{$self}--white {
+      background-image: url("#{$path-img}/logos/logo-short-white.svg");
+    }
+
+  }
+
+  &--small {
+    width: 52px;
+    height: 30px;
+    background-image: url("#{$path-img}/logos/logo-mark-color.svg");
+
+    &#{$self}--black {
+      background-image: url("#{$path-img}/logos/logo-mark-black.svg");
+    }
+
+    &#{$self}--white {
+      background-image: url("#{$path-img}/logos/logo-mark-white.svg");
+    }
+
+    &#{$self}--alt {
+      width: 80px;
+      height: 14.5px;
+      background-image: url("#{$path-img}/logos/logo-short-color.svg");
+
+      &#{$self}--black {
+        background-image: url("#{$path-img}/logos/logo-short-black.svg");
+      }
+
+      &#{$self}--white {
+        background-image: url("#{$path-img}/logos/logo-short-white.svg");
+      }
+    }
+  }
+
+  &--tiny {
+    width: $fz-base;
+    height: $fz-base;
+    margin-top: ($lh-base - 1rem) / 2;
+    margin-bottom: ($lh-base - 1rem) / 2;
+    background-image: url("#{$path-img}/logos/logo-mark-black.svg");
+
+    &#{$self}--color {
+      background-image: url("#{$path-img}/logos/logo-mark-color.svg");
+    }
+
+    &#{$self}--white {
+      background-image: url("#{$path-img}/logos/logo-mark-white.svg");
+    }
+  }
+
+}
+
+.bracket-wrap {
+  @include bracket-wrap;
+}

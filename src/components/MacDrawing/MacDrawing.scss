@@ -1,0 +1,39 @@
+.MacDrawing {
+  position: relative;
+
+  &__container,
+  &__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    transform: translate(-50%,-50%);
+  }
+
+  &__img,
+  &__svg {
+    transition: opacity 3s ease-out;
+  }
+
+  &__container {
+    max-height: rem(600);
+
+    @include breakpoint(small down) {
+      max-width: rem(500);
+    }
+  }
+
+  &__img {
+    opacity: 0;
+  }
+
+  &__svg {
+    pointer-events: none;
+
+    path {
+      stroke-width: 3;
+      stroke: #66c62e;
+      fill: none;
+    }
+  }
+}

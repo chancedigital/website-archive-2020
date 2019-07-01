@@ -1,0 +1,51 @@
+.Header {
+  @include full-width;
+  $self: &;
+  display: grid;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  grid-template-columns: 3fr 1fr;
+  gap: rem(15);
+  padding: rem($grid-gap-sm);
+  transition: 0.2s all ease-in-out;
+
+  @include breakpoint(medium) {
+    grid-template-columns: 1fr 2fr;
+    padding: rem($grid-gap);
+  }
+
+  &--sticky {
+    background: $white;
+  }
+
+  &__logo {
+    margin: 0;
+
+    img,
+    svg {
+      display: block;
+      width: rem(260);
+      height: rem(44);
+    }
+  }
+
+  &__navWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: rem(14);
+
+    @include breakpoint(medium) {
+      padding-right: rem($grid-gap);
+    }
+  }
+
+  &__menuToggle {
+
+    @include breakpoint(medium) {
+      display: none;
+    }
+  }
+}

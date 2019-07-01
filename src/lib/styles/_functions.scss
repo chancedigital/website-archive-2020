@@ -1,0 +1,165 @@
+@import "utils/rem";
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+/// Find the next key in a map.
+/// @param {Map} $map - Map to traverse.
+/// @param {Mixed} $key - Key to use as a starting point.
+/// @return {Mixed} The value for the key after `$key`, if `$key` was found.
+@function map-next($map, $key) {
+
+  // Store the keys of the map as a list
+  $values: map-keys($map);
+
+  $i: 0;
+
+  // If the Key Exists, Get the index of the key within the map and add 1 to it for the next breakpoint in the map
+  @if (map-has-key($map, $key)) {
+    $i: index($values, $key) + 1;
+  }
+
+  // If the key doesn't exist, or it's the last key in the map, return null
+  @if ($i > length($map) or $i == 0) {
+    @return null;
+  } @else {
+    @return map-get($map, nth($values, $i));
+  }
+}
+
+/// Casts a map into a list.
+/// @link http://hugogiraudel.com/2014/04/28/casting-map-into-list/
+/// @param {Map} $map - Map to pull a value from.
+/// @return {List} Depending on the flag, returns either $keys or $values or both.
+@function map-to-list($map, $keep: "both") {
+  $keep: if(index("keys" "values", $keep), $keep, "both");
+
+  @if type-of($map) == "map" {
+    $keys: ();
+    $values: ();
+
+    @each $key, $val in $map {
+      $keys: append($keys, $key);
+      $values: append($values, $val);
+    }
+
+    @if $keep == "keys" {
+      @return $keys;
+    } @else if $keep == "values" {
+      @return $values;
+    } @else {
+      @return zip($keys, $values);
+    }
+  }
+  @return if(type-of($map) != "list", ($value,), $map);
+}
+
+/// Map deep get
+/// @author Hugo Giraudel
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+/// Generate an SVG arrow for select fields.
+/// @param {String} $color - Color of the arrow
+/// @return {*} - SVG arrow value.
+@function select-arrow($color: #272727) {
+  $rgb: #{red($color)} #{green($color)} #{blue($color)};
+  @return url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28#{$rgb}%29'></polygon></svg>");
+}
+
+/// Checks if a value is a string
+/// @return {Boolean}
+@function is-string($value) {
+  @return type-of($value) == "string";
+}
+
+/// Checks if a value is a number
+/// @param {*} $value - The value to check
+/// @return {Boolean} - Whether or not the value is a number
+@function is-number($value) {
+  @return type-of($value) == "number";
+}
+
+/// Checks if a value is a unit of time
+/// @author Hugo Giraudel
+/// @link https://css-tricks.com/snippets/sass/advanced-type-checking/
+/// @param {*} $value - The value to check
+/// @return {Boolean} - Whether or not the value is a unit of time
+@function is-time($value) {
+  @return is-number($value) and index("ms" "s", unit($value)) != null;
+}
+
+/// Checks if a value is an angle unit
+/// @author Hugo Giraudel
+/// @link https://css-tricks.com/snippets/sass/advanced-type-checking/
+/// @param {*} $value - The value to check
+/// @return {Boolean} - Whether or not the value is an angle unit
+@function is-angle($value) {
+  @return is-number($value) and index("deg" "rad" "grad" "turn", unit($value)) != null;
+}
+
+/// Checks if a value is an integer
+/// @author Hugo Giraudel
+/// @link https://css-tricks.com/snippets/sass/advanced-type-checking/
+/// @param {*} $value - The value to check
+/// @return {Boolean} - Whether or not the value is an integer
+@function is-integer($value) {
+  @return is-number($value) and round($value) == $value;
+}
+
+/// Checks if a value is a percentage unit
+/// @author Hugo Giraudel
+/// @link https://css-tricks.com/snippets/sass/advanced-type-checking/
+/// @param {*} $value - The value to check
+/// @return {Boolean} - Whether or not the value is a percentage unit
+@function is-percentage($value) {
+  @return is-number($value) and unit($value) == "%";
+}
+
+/// Gets the path to icon SVG files.
+/// @param {String} $name - The icon name
+/// @param {String} $color - The icon color variant
+/// @return {String} - The URL path to the icon file.
+@function icon-src($name, $color: "black") {
+  @return "#{$path-img}/icons/icon-#{$name}-#{$color}.svg";
+}
+
+/// Gets all formats for @font-face declarations.
+/// @author Chance Strickland
+/// @access public
+/// @param {String} $font-dir - Font directory name
+/// @param {String} $filename - Base filename (must be the same for all formats)
+/// @return {*} - Full CSS list of font format arguments.
+@function get-font-formats($font-dir, $filename) {
+  $path-fonts: "../fonts" !default;
+  $font-formats: (
+    eot: "eot",
+    woff2: "woff2",
+    woff: "woff",
+    opentype: "otf",
+    truetype: "ttf",
+ ) !default;
+  $src: "";
+  @each $format, $ext in $font-formats {
+    $sub-dir: $ext;
+    $ext: if($format == "eot", $ext + "?", $ext);
+    $src: $src + "url('#{$path-fonts}/#{$font-dir}/#{$sub-dir}/#{$filename}.#{$ext}') format('#{$format}')";
+    $src: $src + if(nth(map-keys($font-formats), length($font-formats)) != $format, ",", ";");
+  }
+  @return unquote($src);
+}

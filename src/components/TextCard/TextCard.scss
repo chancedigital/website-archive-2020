@@ -1,0 +1,48 @@
+.TextCard {
+  position: relative;
+  padding: rem(40) rem(20) rem(20);
+  border: 1px solid lighten($cd-light-gray, 10%);
+  border-top-left-radius: rem(10);
+  border-bottom-right-radius: rem(10);
+  background: $white;
+
+  @include breakpoint(medium) {
+    padding: rem(60) rem(40) rem(40);
+  }
+
+  &__heading {
+    @include font-accent;
+    display: block;
+    position: absolute;
+    top: rem(8) * -1;
+    left: rem(10);
+    margin: 0;
+    padding: 0 rem(10);
+    background: #fff;
+    font-size: rem(14);
+
+    @include breakpoint(medium) {
+      left: rem(20);
+      padding: 0 rem(20);
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: rem(32);
+      width: rem(32);
+      height: rem(2);
+      background: $cd-green;
+
+      @include breakpoint(medium) {
+        top: rem(43);
+      }
+    }
+  }
+
+  &__content {
+    margin: 0;
+    @include text-sm;
+  }
+}

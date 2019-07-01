@@ -1,0 +1,594 @@
+@import "utils/breakpoints";
+
+/// Wraps content between psuedo elements with the Chance Digital bracket marks
+@mixin bracket-wrap {
+  &:before,
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 0.4em;
+    height: 0.625em;
+    background-image: url("#{$path-img}/logos/logo-mark-color.svg");
+    background-repeat: no-repeat;
+    background-size: 0.79em;
+  }
+
+  &:before {
+    margin-right: 0.125em;
+    background-position: left bottom;
+  }
+
+  &:after {
+    margin-left: 0.125em;
+    background-position: right bottom;
+  }
+}
+
+/// Applies a clearfix to float elements
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+/// @alias clearfix
+@mixin cf {
+  @include clearfix;
+}
+
+/// Applies base accent font styles
+@mixin font-accent {
+  color: $cd-light-gray;
+  font-family: $ff-accent;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.03;
+  text-transform: uppercase;
+}
+
+/// Applies base body font styles
+@mixin font-body {
+  font-family: $ff-body;
+  font-weight: 200;
+  letter-spacing: 0;
+  text-transform: none;
+
+  strong,
+  b {
+    font-weight: 700;
+  }
+}
+
+/// Applies base heading font styles
+@mixin font-heading {
+  font-family: $ff-heading;
+  font-style: italic;
+  font-weight: 300;
+  line-height: $lh-heading;
+
+  em,
+  i,
+  strong,
+  b {
+    color: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    text-transform: inherit;
+    white-space: nowrap;
+
+    @include bracket-wrap;
+  }
+}
+
+/// Applies XXL text styles
+@mixin text-xxl {
+  font-size: rem(26);
+
+  @include breakpoint(medium) {
+    font-size: rem(42);
+  }
+
+  @include breakpoint(large) {
+    font-size: rem(54);
+  }
+}
+
+/// Applies XL text styles
+@mixin text-xl {
+  font-size: rem(20);
+
+  @include breakpoint(medium) {
+    font-size: rem(32);
+  }
+}
+
+/// Applies large text styles
+@mixin text-lg {
+  font-size: rem(17);
+
+  @include breakpoint(medium) {
+    font-size: rem(24);
+  }
+}
+
+/// Applies standard size text styles
+@mixin text-std {
+  font-size: rem(16);
+  line-height: $lh-base-sm;
+
+  @include breakpoint(medium) {
+    font-size: rem(18);
+    line-height: $lh-base;
+  }
+}
+
+/// Applies small text styles
+@mixin text-sm {
+  font-size: rem(14);
+}
+
+/// Applies XS text styles
+@mixin text-xs {
+  font-size: rem(11);
+}
+
+/// Applies link styles
+@mixin text-link {
+  transition: color 0.2s ease-in, background 0.2s ease-in, border-width 0.2s ease-in;
+  border-bottom: 1px solid transparent;
+  color: $color-link;
+  text-decoration: none;
+
+  &:visited {
+    color: $color-link;
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus {
+    transition: color 0.2s ease-out, background 0.2s ease-out;
+    color: $color-link-hover;
+    text-decoration: underline;
+    text-decoration-color: $color-primary-dark;
+  }
+}
+
+/// Applies link styles for negative (light-text-on-dark-color) spaces
+@mixin text-link-reverse {
+  @include text-link;
+  border-color: rgba($white, 0.8);
+  color: $white;
+
+  &:visited,
+  &:hover,
+  &:focus {
+    color: $white;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $white;
+  }
+}
+
+/// Removes default text styles
+@mixin text-unlink {
+  color: inherit;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/// Applies smooth font rendering
+@mixin text-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/// Applies nav menu styles
+@mixin global-nav-menu {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+
+    [data-whatinput="mouse"] & {
+      outline: none;
+    }
+  }
+
+  &__link {
+    margin-bottom: 0;
+  }
+}
+
+/// Applies icon styles
+/// @param {String} $name - Icon name
+/// @param {String} $color - Icon color
+@mixin icon($name, $color: "black") {
+  $icon-src: icon-src($name, $color);
+  width: $lh-base * 1rem;
+  height: $lh-base * 1rem;
+  background: url($icon-src) no-repeat center center;
+  background-size: 75%;
+}
+
+/// Applies hover style background color
+/// @param {Color} $color - Color value
+@mixin button-hover-override($color: $color-link) {
+  &:hover,
+  &:focus {
+    background: $color;
+  }
+}
+
+/// Applies grid styles
+/// @param {List} $cols - List of column values for medium screens
+@mixin make-grid($cols...) {
+  display: grid;
+  grid-template-columns: minmax(auto, rem(704));
+  gap: $mg-vertical-sm;
+  justify-content: center;
+
+  @include breakpoint(medium) {
+    gap: $mg-vertical;
+
+    @if length($cols) != 1 {
+      $val: "";
+      @each $col in $cols {
+        $val: $val + " #{$col}fr";
+      }
+      grid-template-columns: unquote($val);
+    }
+  }
+}
+
+/// Makes an element full-width
+@mixin full-width {
+  width: calc(100vw - #{$grid-gap-sm * 2});
+  margin: 0 auto;
+
+  @include breakpoint(medium) {
+    width: calc(100vw - #{$grid-gap * 2});
+  }
+}
+
+/// Makes an element full-height
+/// @param {Boolean} $force-height - Whether or not to use a forced height declaration rather than just min-height
+@mixin full-height($force-height: false) {
+  min-height: calc(100vh - #{$grid-gap-sm * 2});
+  margin: $grid-gap-sm auto;
+  @if $force-height == true {
+    height: calc(100vh - #{$grid-gap-sm * 2});
+  }
+
+  @include breakpoint(medium) {
+    min-height: calc(100vh - #{$grid-gap * 2});
+    margin: $grid-gap auto;
+    @if $force-height == true {
+      height: calc(100vh - #{$grid-gap * 2});
+    }
+  }
+
+  body.admin-bar & {
+
+    @include breakpoint(small only) {
+      min-height: calc(100vh - #{$grid-gap-sm * 2 + rem(46)});
+      @if $force-height == true {
+        height: calc(100vh - #{$grid-gap-sm * 2 + rem(46)});
+      }
+    }
+
+    @include breakpoint(medium) {
+      min-height: calc(100vh - #{$grid-gap * 2 + rem(32)});
+      @if $force-height == true {
+        height: calc(100vh - #{$grid-gap * 2 + rem(32)});
+      }
+    }
+
+    @media screen and (min-width: #{map-get($breakpoints, medium)}) and (max-width: 782px) {
+      min-height: calc(100vh - #{$grid-gap * 2 + rem(46)});
+      @if $force-height == true {
+        height: calc(100vh - #{$grid-gap * 2 + rem(46)});
+      }
+    }
+  }
+}
+
+/// Adds vertical padding
+@mixin section-padded-y {
+  padding-top: $mg-vertical-sm;
+  padding-bottom: $mg-vertical-sm;
+
+  @include breakpoint(medium) {
+    padding-top: $mg-vertical;
+    padding-bottom: $mg-vertical;
+  }
+}
+
+/// Adds horizontal padding
+@mixin section-padded-x {
+  width: calc(100% - #{$grid-gap-sm * 2});
+  padding-right: $grid-gap-sm;
+  padding-left: $grid-gap-sm;
+
+  @include breakpoint(medium) {
+    width: calc(100% - #{$grid-gap * 2});
+    padding-right: $grid-gap;
+    padding-left: $grid-gap;
+  }
+}
+
+/// Makes an element full screen
+@mixin full-screen {
+  @include full-width;
+  @include full-height;
+}
+
+/// Applies the primary gradient background
+@mixin make-primary-gradient {
+  background-color: saturate(darken($color-primary, 10%), 10%);
+  background-image: $gradient-primary;
+}
+
+/// Applies section heading styles
+@mixin section-heading {
+  margin-top: 0;
+
+  @include breakpoint(medium) {
+    margin-top: 0;
+  }
+}
+
+/// Applies section background color
+/// @param {Color} $color - Color value to apply
+@mixin section-color($color: $cd-xlight-gray) {
+  background-color: $color;
+}
+
+/// Applies global form field styles
+@mixin form-field {
+  @include font-body;
+  @include text-std;
+  $field: &;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin-right: $mg-horiz / 2;
+  margin-bottom: $mg-vertical-sm;
+  padding: #{$mg-vertical-sm / 4} $mg-horiz;
+  transition: 0.5s all ease-in-out;
+  border: 1px solid $cd-light-gray;
+  border-radius: 0;
+  background: white;
+  box-shadow: none;
+  color: $color-input-text;
+  font-style: normal;
+  text-align: left;
+  vertical-align: middle;
+  appearance: none;
+
+  &:hover {
+    border-color: darken($border-color, 15%);
+    outline: none;
+  }
+
+  &:focus {
+    border-color: darken($border-color, 30%);
+
+    [data-whatintent="mouse"] & {
+      outline: none;
+    }
+  }
+
+  @include breakpoint(medium) {
+    font-size: rem(16);
+
+    &--md {
+      width: 15%;
+    }
+
+    &--sm {
+      width: 33%;
+    }
+  }
+
+  &--code {
+    font-family: $ff-code;
+
+    &::placeholder {
+      font-style: normal;
+    }
+  }
+
+  &::placeholder {
+    opacity: 1; // Required for MS Edge
+    color: rgba($color-input-text, 0.5);
+    font-style: italic;
+  }
+}
+
+/// Applies textarea field styles
+@mixin form-textarea {
+  @include form-field;
+  max-width: 100%;
+  height: auto;
+  min-height: rem(48);
+  overflow: auto;
+
+  &[rows] {
+    height: auto;
+  }
+}
+
+/// Applies select field styles
+@mixin form-select {
+  @include form-field;
+  padding-right: 1.75rem;
+  background-image: select-arrow($cd-light-gray);
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-position: right -1rem center;
+  background-size: 9px 6px;
+
+  &:hover {
+    background-image: select-arrow(darken($border-color, 15%));
+  }
+
+  &:focus {
+    background-image: select-arrow(darken($border-color, 30%));
+  }
+}
+
+/// Applies form label styles
+@mixin form-label {
+  @include font-heading;
+  @include text-sm;
+  display: block;
+  margin-top: $mg-vertical-sm;
+  margin-bottom: $mg-vertical-sm / 4;
+}
+
+/// Applies checkbox group styles
+@mixin form-checkbox-group {
+  label {
+    @include font-body;
+    display: inline-block;
+    margin-top: 0;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: $mg-horiz / 4;
+  }
+}
+
+/// Applies radio group styles
+@mixin form-radio-group {
+  @include form-checkbox-group;
+  display: inline-block;
+  margin-right: $mg-horiz;
+  margin-bottom: $mg-vertical-sm / 2;
+}
+
+/// Builds font-face declarations
+/// @param {String} $family - Font family name
+/// @param {String} $dir - Directory to look for font files
+/// @param {Map} $styles - Map to traverse for font details
+@mixin build-font-family($family, $dir, $styles) {
+  @each $style, $style-map in $styles {
+    @each $weight, $font-name in $style-map {
+      @font-face {
+        font-family: $family;
+        font-style: $style;
+        font-weight: $weight;
+        src: get-font-formats($dir, $font-name);
+      }
+    }
+  }
+}
+
+/// Removes bullet styles from list elements
+@mixin no-bullet {
+  margin-left: 0;
+  list-style: none;
+}
+
+/// Applies list styles for nav menus
+@mixin make-nav-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/// Applies style to markers for required form fields
+@mixin make-required {
+  color: $cd-red;
+}
+
+/// Applies styles to major page landmarks for standard templates
+@mixin make-page {
+  &__main,
+  &__aside {
+    margin: $mg-vertical-sm 0;
+
+    @include breakpoint( medium ) {
+      margin: $mg-vertical 0;
+    }
+  }
+}
+
+/// Hides text visually unless it is focused
+/// Used for important context and labels for screen-reader users
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  border: 0;
+  clip-path: inset(50%);
+  word-wrap: normal;
+
+  &:focus {
+    display: block;
+    z-index: 100000;
+    top: 0.5em;
+    left: 0.5em;
+    width: auto;
+    clip: auto;
+    clip-path: none;
+  }
+}
+
+/// Constrains an inner element to a max-width
+/// @param {String} $size - Key for the $site-containers map to calculate the max-width
+/// @require {variable} $site-containers - Map of max-width values
+@mixin make-container($size: default) {
+  @if (map-has-key($site-containers, $size)) {
+    width: calc(100% - #{$grid-gap-sm * 2});
+    max-width: rem(map-get($site-containers, $size));
+    margin-right: auto;
+    margin-left: auto;
+
+    @include breakpoint(medium) {
+      width: calc(100% - #{$grid-gap * 2});
+    }
+  }
+}
+
+@mixin unbutton {
+
+  &,
+  &[type="button"] {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    transition: inherit;
+    border: none;
+    appearance: none;
+    background: 0;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+  }
+}

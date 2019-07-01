@@ -1,0 +1,43 @@
+.Capabilities {
+  @include section-padded-y;
+  @include full-width;
+  background: $white;
+
+  &__container {
+    @include make-container(wide);
+  }
+
+  &__heading {
+    @include section-heading;
+  }
+
+  &__list {
+    @include no-bullet;
+    display: grid;
+    grid-template-columns: auto;
+    gap: $mg-vertical-sm;
+    margin: #{$mg-vertical-sm / 2} 0 0;
+    padding: 0;
+
+    @include breakpoint(medium) {
+      gap: $mg-vertical;
+      grid-template-columns: repeat(2, 1fr);
+      margin: #{$mg-vertical / 2} 0 0;
+    }
+
+    @include breakpoint(large) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: $mg-vertical-sm;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+  }
+}

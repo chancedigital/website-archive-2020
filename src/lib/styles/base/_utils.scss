@@ -1,0 +1,17 @@
+.util {
+  &-clearfix {
+    @include clearfix;
+  }
+
+  &-no-bullet {
+    @include no-bullet;
+  }
+
+  &-required {
+    @include make-required;
+  }
+
+  &-visually-hidden {
+    @include visually-hidden;
+  }
+}

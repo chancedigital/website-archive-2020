@@ -1,0 +1,45 @@
+// stylelint-disable selector-max-id
+html,
+body,
+#___gatsby,
+div[role="group"] {
+  position: relative;
+  max-width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+  //scroll-behavior: smooth;
+}
+
+body {
+  font-family: $ff-sans;
+}
+
+::selection {
+  background: $cd-green-light;
+  color: $black;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+// suppress focus ring on for mouse users
+[data-whatintent="mouse"] *:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

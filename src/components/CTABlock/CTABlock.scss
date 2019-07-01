@@ -1,0 +1,78 @@
+.CTABlock {
+  @include section-padded-y;
+  @include section-color($cd-xlight-gray);
+  @include full-width;
+
+  &__container {
+    @include make-container(wide);
+  }
+
+  &__heading {
+    @include section-heading;
+  }
+
+  &__contentWrapper {
+    display: grid;
+    gap: $mg-vertical-sm;
+    grid-template-columns: auto;
+
+    @include breakpoint(medium) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint(large) {
+      gap: $mg-vertical;
+    }
+  }
+
+  &__content {
+    > p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__button {
+    &:hover,
+    &:focus {
+      border-color: $cd-xlight-gray;
+    }
+  }
+
+  &__reviews {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__reviewWrapper {
+    will-change: height;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    transform: translateY(rem(24) * -1);
+    transition: 750ms all ease-out;
+    opacity: 0;
+
+    &--active {
+      position: relative;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &__review {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__reviewFooter {
+    @include font-accent;
+    @include text-sm;
+    margin-top: 2em;
+  }
+}

@@ -1,0 +1,60 @@
+.PageHeader {
+  display: flex;
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  background: $cd-xlight-gray;
+  background-position: center;
+  background-size: cover;
+  @include full-screen;
+
+  &__container {
+    @include make-container(wide);
+  }
+
+  &__content {
+    @include make-grid(1.5, 1);
+    margin: rem(100) 0;
+
+    @include breakpoint(small only) {
+      grid-template-rows: minmax(rem(200), 68vw) auto;
+
+      > *:first-child {
+        grid-row: 2 / 3;
+      }
+
+      > *:last-child {
+        grid-row: 1 / 2;
+      }
+    }
+
+    @include breakpoint(medium) {
+      margin: $mg-vertical 0;
+    }
+
+    > * {
+      align-self: center;
+    }
+  }
+
+  &__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    min-height: 100%;
+    transition: 1s opacity;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__cta {
+
+    &:hover,
+    &:focus {
+      border-color: $cd-xlight-gray;
+    }
+  }
+}

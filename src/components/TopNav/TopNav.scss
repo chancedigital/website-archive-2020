@@ -1,0 +1,58 @@
+.TopNav {
+  $self: &;
+  will-change: transform, height;
+  overflow: hidden;
+
+  &__item {
+    @include text-sm;
+    @include font-accent;
+    font-style: none;
+
+    @include breakpoint(medium) {
+      &:not(:last-child) {
+        margin-right: rem(32);
+      }
+    }
+  }
+
+  &__link {
+    @include text-link;
+    color: $cd-green;
+    font-weight: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+
+  @include breakpoint(small down) {
+    //display: none;
+    position: absolute;
+    top: calc(100% - #{rem($grid-gap-sm)});
+    right: $grid-gap-sm;
+    transition: box-shadow 800ms ease-out 300ms;
+
+    &--active {
+      box-shadow: $global-drop-shadow;
+    }
+
+    &__menu {
+      display: block;
+      transition: 0.5s all ease-in-out;
+      transition-delay: 0.4s;
+      background: $white;
+      box-shadow: none;
+    }
+
+    &__item {
+      display: block;
+      padding: rem(8) rem(16);
+
+      &:first-child {
+        padding-top: rem(16);
+      }
+
+      &:last-child {
+        padding-bottom: rem(16);
+      }
+    }
+  }
+}
