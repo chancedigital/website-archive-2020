@@ -1,1 +1,3 @@
-export {default} from '@components/_pages/Homepage';
+import Homepage from '@components/_pages/Homepage';
+
+export default Homepage;
