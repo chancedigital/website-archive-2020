@@ -1,5 +1,11 @@
 .MacDrawing {
   position: relative;
+  transition: opacity 900ms ease-out 500ms;
+  opacity: 0;
+
+  &--drawing {
+    opacity: 1;
+  }
 
   &__container,
   &__img {

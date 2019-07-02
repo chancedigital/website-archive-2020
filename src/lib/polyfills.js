@@ -1,4 +1,7 @@
 /* eslint-disable no-extend-native */
+import smoothscroll from 'smoothscroll-polyfill';
+
+smoothscroll.polyfill();
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat#Polyfill
 if (!Array.prototype.flat) {

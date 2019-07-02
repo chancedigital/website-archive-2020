@@ -1,10 +1,7 @@
 // import React from 'react';
-import smoothscroll from 'smoothscroll-polyfill';
-import 'unfetch';
+import '@lib/polyfills';
 import 'what-input';
 import '@lib/styles/app.scss';
-
-smoothscroll.polyfill();
 
 export const shouldUpdateScroll = ({
   prevRouterProps,

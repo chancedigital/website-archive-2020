@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { navigate } from "gatsby"
 import * as Yup from 'yup';
+import fetch from 'unfetch';
 import { Element } from '@lib/types';
 import Form from '@components/Form';
 import Field from '@components/Field';

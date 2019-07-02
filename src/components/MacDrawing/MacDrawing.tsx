@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import cx from 'classnames';
 import SVG, { SVGProps } from '@components/SVG';
 import SRT from '@components/SRT';
@@ -12,9 +12,21 @@ export const MacDrawing: React.FC<MacDrawingProps> = ({
   className,
   ...props
 }) => {
-  useLayoutEffect(drawing, []);
+  const [drawingStarted, startDrawing] = useState(false);
+  useLayoutEffect((): any => {
+    if (typeof window !== 'undefined') {
+      const cleanup = drawing();
+      startDrawing(true);
+      return cleanup;
+    }
+  }, []);
   return (
-    <figure className={cx(`MacDrawing`, className)} {...props}>
+    <figure
+      className={cx(className, `MacDrawing`, {
+        'MacDrawing--drawing': drawingStarted,
+      })}
+      {...props}
+    >
       <div className="MacDrawing__container">
         <img
           className="MacDrawing__img"
