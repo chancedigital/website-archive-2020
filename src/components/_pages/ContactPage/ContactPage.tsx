@@ -8,7 +8,10 @@ import './ContactPage.scss';
 const ContactPage: React.FC<{ data: any }> = () => {
   return (
     <Layout className="ContactPage">
-      <SEO title="Contact" />
+      <SEO
+        title="Get In Touch"
+        description="You're one step away from reinventing your business on the web. What are you waiting for? Contact us today."
+      />
       <PageHeader
         className="ContactPage__pageHeader"
         title="Let’s Talk"

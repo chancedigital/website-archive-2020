@@ -13,7 +13,10 @@ import './Homepage.scss';
 const Homepage: React.FC<{ data: any }> = () => {
   return (
     <Layout className="Homepage">
-      <SEO title="Home" />
+      <SEO
+        title="Modern Development for the Modern Web"
+        description="We create high-impact websites and apps that drive user engagement and leave a lasting impression for your audience."
+      />
       <PageHeader
         buttonHref="/contact"
         buttonText="Get In Touch"

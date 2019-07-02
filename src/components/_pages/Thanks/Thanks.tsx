@@ -7,7 +7,10 @@ import './Thanks.scss';
 const Thanks: React.FC<{ data: any }> = () => {
   return (
     <Layout className="Thanks">
-      <SEO title="Thank You for Your Submission" />
+      <SEO
+        title="Thank You"
+        description="We can't wait to see how we can help! We'll review and get back to you within one business day."
+      />
       <PageHeader
         buttonHref="/"
         buttonText="Go Back Home"
