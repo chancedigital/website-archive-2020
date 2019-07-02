@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Formik, Form as Frm } from 'formik';
+import { Formik } from 'formik';
 import cx from 'classnames';
 import Button from '@components/Button';
 import { useAnimationEndListener } from '@lib/hooks';
@@ -30,7 +30,13 @@ const Form: React.FC<any> = ({
       {...rest}
       render={props => {
         return (
-          <Frm className={cx('Form', className)}>
+          // @ts-ignore
+          <form
+            className={cx('Form', className)}
+            onReset={props.handleReset}
+            onSubmit={props.handleSubmit}
+            netlify
+          >
             {render(props)}
             {renderButton ? (
               renderButton({
@@ -53,7 +59,7 @@ const Form: React.FC<any> = ({
                 {buttonText}
               </Button>
             )}
-          </Frm>
+          </form>
         );
       }}
     />
