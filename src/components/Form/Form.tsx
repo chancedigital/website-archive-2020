@@ -15,6 +15,7 @@ const Form: React.FC<any> = ({
   render,
   renderButton,
   schema,
+  formProps = {},
   ...rest
 }) => {
   const submitButton = useRef<HTMLButtonElement>(null);
@@ -35,7 +36,7 @@ const Form: React.FC<any> = ({
             className={cx('Form', className)}
             onReset={props.handleReset}
             onSubmit={props.handleSubmit}
-            netlify
+            {...formProps}
           >
             {render(props)}
             {renderButton ? (

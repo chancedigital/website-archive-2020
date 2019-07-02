@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { navigate } from "gatsby"
 import * as Yup from 'yup';
 import { Element } from '@lib/types';
 import Form from '@components/Form';
@@ -26,11 +27,30 @@ const FORM_SCHEMA = Yup.object().shape({
 
 export interface ContactSectionProps extends Element<'section'> {}
 
+function encode(data: any) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+}
+
 const ContactSection: React.FC<ContactSectionProps> = ({
   children,
   className,
   ...props
 }) => {
+  const handleSubmit = (data: any) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'contact',
+        ...data,
+      }),
+    })
+      .then(() => navigate('/thanks'))
+      .catch(console.error); // TODO: Set errors
+  };
+
   return (
     <section className={cx(`ContactSection`, className)} {...props}>
       <div className="ContactSection__container">
@@ -42,7 +62,14 @@ const ContactSection: React.FC<ContactSectionProps> = ({
             email: '',
             comments: '',
           }}
+          onSubmit={handleSubmit}
           schema={FORM_SCHEMA}
+          formProps={{
+            name: 'contact',
+            method: 'post',
+            ['data-netlify']: 'true',
+            ['data-netlify-honeypot']: 'bot-field',
+          }}
           render={(props: any) => {
             return (
               <React.Fragment>
