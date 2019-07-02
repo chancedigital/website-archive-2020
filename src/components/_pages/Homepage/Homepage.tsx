@@ -15,7 +15,7 @@ const Homepage: React.FC<{ data: any }> = () => {
     <Layout className="Homepage">
       <SEO title="Home" />
       <PageHeader
-        buttonOnClick={() => void null}
+        buttonHref="/contact"
         buttonText="Get In Touch"
         className="Homepage__pageHeader"
         fullHeight={true}

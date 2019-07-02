@@ -55,8 +55,7 @@ const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
             </p>
             <Button
               className="CTABlock__button"
-              type="button"
-              onClick={() => void null}
+              href="/contact"
             >
               Get In Touch
             </Button>

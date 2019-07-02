@@ -20,6 +20,7 @@
     padding: 0 rem(10);
     background: #fff;
     font-size: rem(14);
+    white-space: nowrap;
 
     @include breakpoint(medium) {
       left: rem(20);

@@ -20,15 +20,15 @@ const TopNav: React.FC<TopNavProps> = ({
   const navItems = [
     {
       label: 'How We Can Help',
-      href: '#capes',
+      href: '/#capes',
     },
     {
       label: 'Tools We Use',
-      href: '#tools',
+      href: '/#tools',
     },
     {
       label: `Let's Talk`,
-      onClick: () => void null,
+      href: 'contact',
     },
   ].map((item, i) => ({
     ...item,
