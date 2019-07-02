@@ -261,7 +261,8 @@
 /// Makes an element full-width
 @mixin full-width {
   width: calc(100vw - #{$grid-gap-sm * 2});
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
 
   @include breakpoint(medium) {
     width: calc(100vw - #{$grid-gap * 2});
