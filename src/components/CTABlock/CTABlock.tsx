@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import cx from 'classnames';
 import { Element } from '@lib/types';
 import { useInterval, useMeasure } from '@lib/hooks';
@@ -53,7 +53,13 @@ const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
               head-on … well, now you’re speaking my love language! Let’s grab
               coffee and see if we can tackle the future together.
             </p>
-            <Button className="CTABlock__button">Get In Touch</Button>
+            <Button
+              className="CTABlock__button"
+              type="button"
+              onClick={() => void null}
+            >
+              Get In Touch
+            </Button>
           </div>
           <ul className="CTABlock__reviews">
             {REVIEWS.map((review, i) => {

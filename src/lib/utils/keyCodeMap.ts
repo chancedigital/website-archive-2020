@@ -1,13 +1,12 @@
-/**
- * @ignore
- * some key-keyCodes definition and utils from closure-library
- * @author yiminghe@gmail.com
- */
 interface KeyCodeMap {
   isTextModifyingKeyEvent?(e: KeyboardEvent): any;
   [key: string]: any;
 }
 
+/**
+ * Key-keyCodes definition and utils from closure-library
+ * @author yiminghe
+ */
 const keyCodeMap: KeyCodeMap = {
   /**
    * MAC_ENTER
@@ -431,8 +430,8 @@ const keyCodeMap: KeyCodeMap = {
   WIN_IME: 229,
 };
 
-/*
- whether text and modified key is entered at the same time.
+/**
+ * Whether text and modified key is entered at the same time.
  */
 keyCodeMap.isTextModifyingKeyEvent = function isTextModifyingKeyEvent(e) {
   const keyCode = e.keyCode;
@@ -477,8 +476,8 @@ keyCodeMap.isTextModifyingKeyEvent = function isTextModifyingKeyEvent(e) {
   }
 };
 
-/*
- whether character is entered.
+/**
+ * Whether character is entered.
  */
 keyCodeMap.isCharacterKey = function isCharacterKey(keyCode: number) {
   if (keyCode >= keyCodeMap.ZERO && keyCode <= keyCodeMap.NINE) {
@@ -494,10 +493,6 @@ keyCodeMap.isCharacterKey = function isCharacterKey(keyCode: number) {
   }
 
   // Safari sends zero key keyCode for non-latin characters.
-  /* if (window.navigator.userAgent.indexOf('WebKit') !== -1 && keyCode === 0) {
-    return true;
-  } */
-
   switch (keyCode) {
     case keyCodeMap.SPACE:
     case keyCodeMap.QUESTION_MARK:

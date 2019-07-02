@@ -6,17 +6,21 @@ div[role="group"] {
   position: relative;
   max-width: 100vw;
   height: 100%;
-  overflow-x: hidden;
-  //scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
+  overflow-x: hidden;
   font-family: $ff-sans;
 }
 
 ::selection {
   background: $cd-green-light;
   color: $black;
+}
+
+[data-whatintent="keyboard"] :focus {
+  outline: $cd-green-light auto 5px;
 }
 
 img {

@@ -2,11 +2,20 @@
   display: flex;
   position: relative;
   align-items: center;
+  margin: $grid-gap-sm auto;
   overflow: hidden;
   background: $cd-xlight-gray;
   background-position: center;
   background-size: cover;
-  @include full-screen;
+  @include full-width;
+
+  @include breakpoint(medium) {
+    margin: $grid-gap auto;
+  }
+
+  &--fullHeight  {
+    @include full-height;
+  }
 
   &__container {
     @include make-container(wide);

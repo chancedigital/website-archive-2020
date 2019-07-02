@@ -1,0 +1,53 @@
+.Field {
+  @include form-label;
+  position: relative;
+  margin-bottom: 2.75rem;
+
+  &__label {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: rem(-7);
+    left: rem(10);
+    padding: 0 rem(6);
+    transition: 0.5s all;
+    background: $white;
+    color: $cd-medium-gray;
+    font-size: rem(12);
+    font-weight: 500;
+  }
+
+  &__field {
+    @include form-field;
+
+    &--select {
+      @include form-select;
+    }
+
+    &--textarea {
+      height: auto;
+      max-height: rem(100);
+      padding-top: 0.5rem;
+      resize: none;
+
+      @include breakpoint( medium ) {
+        max-height: rem(150);
+      }
+    }
+
+    &--error {
+      border-color: $color-danger;
+    }
+  }
+
+  &__errors {
+    @include form-label;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 2px;
+    margin: 0;
+    color: $color-danger;
+    font-size: rem(12);
+    font-weight: $fw-normal;
+  }
+}

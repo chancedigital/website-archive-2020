@@ -12,6 +12,7 @@ const Error404: React.FC<{ data: any }> = () => {
         buttonHref="/"
         buttonText="Go Back Home"
         className="Error404__pageHeader"
+        fullHeight={true}
         title="404: Danger!"
         innerContent="You can clearly predict the future, as you've landed on a page that hasn't yet been created. Well done."
       />

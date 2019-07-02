@@ -10,6 +10,7 @@ import {
   RefObject,
 } from 'react';
 import { json2mq } from '@lib/utils';
+import { getBreakpointQueryObject } from '@lib/utils';
 
 type Effect = (effect: EffectCallback, deps?: DependencyList) => void;
 
@@ -80,6 +81,16 @@ export const useMedia = createUseMedia(useEffect);
 
 export const useMediaLayout = createUseMedia(useLayoutEffect);
 
+export const useBreakpoint = (
+  bpQuery: string | number,
+  defaultState: boolean = false,
+  toRem: boolean = true
+) => {
+  const queryObject = getBreakpointQueryObject(bpQuery, toRem);
+  const matches = useMediaLayout(queryObject, defaultState);
+  return matches;
+};
+
 type IDState = string;
 
 let _id = nanoid();
@@ -101,7 +112,7 @@ export const useMeasure = (
     { x: 0, y: 0, width: 0, height: 0, top: 0, right: 0, bottom: 0, left: 0 }
   );
 
-  useLayoutEffect(() => {
+  useLayoutEffect((): any => {
     let animationFrameId: number | null = null;
     const measure: ResizeObserverCallback = ([entry]) => {
       animationFrameId = window.requestAnimationFrame(() => {
@@ -109,13 +120,15 @@ export const useMeasure = (
       });
     };
 
-    const ro = new ResizeObserver(measure);
-    ro.observe(ref.current!);
+    if (ref.current) {
+      const ro = new ResizeObserver(measure);
+      ro.observe(ref.current);
 
-    return () => {
-      window.cancelAnimationFrame(animationFrameId!);
-      ro.disconnect();
-    };
+      return () => {
+        window.cancelAnimationFrame(animationFrameId!);
+        ro.disconnect();
+      };
+    }
   }, deps);
 
   return bounds;
@@ -129,7 +142,6 @@ export const useScrollPosition = (): ScrollPosition => {
   useEffect((): any => {
     let requestRunning: number | null = null;
     function handleScroll() {
-      console.log('SCROLLLLLED');
       if (isBrowser && requestRunning === null) {
         requestRunning = window.requestAnimationFrame(() => {
           setScrollPosition(getScrollPosition());
@@ -139,7 +151,6 @@ export const useScrollPosition = (): ScrollPosition => {
     }
 
     if (isBrowser) {
-      console.log('browser!');
       window.addEventListener('scroll', handleScroll);
       return () => void window.removeEventListener('scroll', handleScroll);
     }
@@ -174,4 +185,20 @@ export const useInterval = (callback: () => any, delay: number) => {
       return () => void clearInterval(id);
     }
   }, [delay]);
+};
+
+export const useAnimationEndListener = (
+  element: HTMLElement,
+  callback: (ev: AnimationEvent, el: HTMLElement) => any
+): any => {
+  const handleAnimationEnd = (event: AnimationEvent) => {
+    callback(event, element);
+  };
+  useEffect((): any => {
+    if (isBrowser) {
+      element.addEventListener('animationend', handleAnimationEnd);
+      return () =>
+        element.removeEventListener('animationend', handleAnimationEnd);
+    }
+  }, []);
 };

@@ -4,16 +4,22 @@
   @include make-primary-gradient;
   @include full-width;
   $self: &;
+  margin-top: $grid-gap-sm;
   margin-bottom: $grid-gap-sm;
   color: $color-footer-text;
 
   @include breakpoint( medium ) {
+    margin-top: $grid-gap;
     margin-bottom: $grid-gap;
   }
 
   ::selection {
     background: $white;
     color: $black;
+  }
+
+  [data-whatintent="keyboard"] & :focus {
+    outline: $white auto 5px;
   }
 
   /* .cdLogo {

@@ -1,1 +1,3 @@
-export { default, SVGProps } from './SVG';
+import { SVGProps } from './SVG';
+export type SVGProps = SVGProps;
+export { default } from './SVG';

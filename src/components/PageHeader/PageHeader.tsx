@@ -10,6 +10,7 @@ export interface PageHeaderProps extends Element<'section'> {
     event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   buttonText?: string;
+  fullHeight?: boolean;
   innerContent: string;
   renderImage?: ({  }: any) => any;
   title: string;
@@ -20,26 +21,34 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   buttonOnClick,
   buttonText,
   className,
+  fullHeight,
   innerContent,
   renderImage,
   title,
   ...props
 }) => {
   return (
-    <header className={cx(`PageHeader`, className)} {...props}>
+    <header
+      className={cx(`PageHeader`, className, {
+        'PageHeader--fullHeight': fullHeight,
+      })}
+      {...props}
+    >
       <div className="PageHeader__container">
         <div className="PageHeader__content">
           <div>
             <h1 className="PageHeader__title">{title}</h1>
             <p className="PageHeader__subtitle">{innerContent}</p>
-            <Button
-              className="PageHeader__cta"
-              href={buttonHref}
-              htmlType="button"
-              onClick={buttonOnClick}
-            >
-              {buttonText}
-            </Button>
+            {buttonText && (buttonHref || buttonOnClick) ? (
+              <Button
+                className="PageHeader__cta"
+                href={buttonHref}
+                htmlType="button"
+                onClick={buttonOnClick}
+              >
+                {buttonText}
+              </Button>
+            ) : null}
           </div>
           {renderImage ? renderImage({ className: 'PageHeader__image' }) : null}
         </div>

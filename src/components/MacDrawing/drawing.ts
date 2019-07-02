@@ -77,14 +77,13 @@ export const drawing = () => {
 
   const scrollPage = () => {
     svgs.forEach((el, i) => {
-      if (inViewport((el.parentNode as HTMLElement), 0.5)) {
+      if (inViewport(el.parentNode as HTMLElement, 0.5)) {
         drawings[i].render();
       }
     });
     didScroll = false;
   };
   const handleScroll = () => {
-    console.log('SCROOLLLLLED');
     if (!didScroll) {
       didScroll = true;
       setTimeout(() => {
@@ -137,4 +136,10 @@ export const drawing = () => {
 
   window.addEventListener('scroll', handleScroll, false);
   window.addEventListener('resize', handleResize, false);
+
+  // Return a cleanup function to remove listeners
+  return function cleanup() {
+    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('resize', handleResize);
+  };
 };

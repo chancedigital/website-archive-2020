@@ -1,0 +1,15 @@
+.ContactSection {
+  $self: &;
+  @include section-padded-y;
+  @include full-width;
+  overflow: hidden;
+  background: $white;
+
+  &__container {
+    @include make-container(wide);
+  }
+
+  &__heading {
+    @include section-heading;
+  }
+}

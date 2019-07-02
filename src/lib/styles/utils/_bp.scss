@@ -3,7 +3,7 @@ $print-breakpoint: large !default;
 
 $zero-breakpoint: small !default;
 
-$breakpoints-keys: map-to-list($breakpoints, "keys");
+$breakpoint-keys: map-to-list($breakpoints, "keys");
 
 @if nth(map-values($breakpoints), 1) != 0 {
   @error "The first key in the $breakpoints map must have a value of '0'.";
@@ -119,8 +119,8 @@ $breakpoints-keys: map-to-list($breakpoints, "keys");
   @for $i from 1 through length($values) {
     $value: nth($values, $i);
     $str: breakpoint($value);
-    $bp: index($breakpoints-keys, $value);
-    $pbp: index($breakpoints-keys, $print-breakpoint);
+    $bp: index($breakpoint-keys, $value);
+    $pbp: index($breakpoint-keys, $print-breakpoint);
 
     $old-size: null;
 

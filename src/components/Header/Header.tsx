@@ -5,11 +5,8 @@ import TopNav from '@components/TopNav';
 import MenuToggle from '@components/MenuToggle';
 import SRT from '@components/SRT';
 import { Element } from '@lib/types';
-import { useId } from '@lib/hooks';
+import { useId, useScrollYPosition } from '@lib/hooks';
 import './Header.scss';
-
-
-
 
 const isBrowser = typeof window !== 'undefined';
 
@@ -45,25 +42,17 @@ const Header: React.FC<HeaderProps> = ({
   ...props
 }) => {
   const [menuIsActive, setMenuActive] = useState<boolean>(false);
-  const [position, setScrollPosition] = useState<ScrollPosition>(
-    getScrollPosition()
-  );
-
-  useEffect((): any => {
-    let requestRunning: number | null = null;
-    function handleScroll() {
-      console.log('SCROLLLLLED');
-      setScrollPosition(getScrollPosition());
-      console.log(position);
-    }
-    document.addEventListener('scroll', handleScroll);
-    return () => void document.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrollY = useScrollYPosition();
 
   const LogoWrapper = isHome ? 'div' : 'h1';
   const navId = `top-nav-${useId()}`;
   return (
-    <header className={cx(`Header`, className)} {...props}>
+    <header
+      className={cx(`Header`, className, {
+        'Header--sticky': scrollY > 180,
+      })}
+      {...props}
+    >
       <LogoWrapper className="Header__logo">
         {isHome ? (
           <SiteTitle />

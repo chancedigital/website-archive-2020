@@ -12,9 +12,7 @@ export const MacDrawing: React.FC<MacDrawingProps> = ({
   className,
   ...props
 }) => {
-  useLayoutEffect(() => {
-    drawing();
-  }, []);
+  useLayoutEffect(drawing, []);
   return (
     <figure className={cx(`MacDrawing`, className)} {...props}>
       <div className="MacDrawing__container">

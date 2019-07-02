@@ -1,4 +1,5 @@
 .IconWithHoverLabel {
+  $self: &;
   display: flex;
   position: relative;
   align-items: center;
@@ -17,7 +18,9 @@
     white-space: nowrap;
     @include font-accent;
 
-    *:hover > & {
+    #{$self}:focus &,
+    #{$self}:focus-within &,
+    #{$self}:hover & {
       transform: translateY(rem(14));
       opacity: 1;
     }
@@ -28,7 +31,9 @@
     transform: translateY(0);
     transition: 0.5s all;
 
-    *:hover > & {
+    #{$self}:focus &,
+    #{$self}:focus-within &,
+    #{$self}:hover & {
       transform: translateY(rem(8) * -1);
     }
   }

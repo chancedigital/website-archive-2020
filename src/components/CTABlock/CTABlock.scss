@@ -56,11 +56,13 @@
     transform: translateY(rem(24) * -1);
     transition: 750ms all ease-out;
     opacity: 0;
+    pointer-events: none;
 
     &--active {
       position: relative;
       transform: translateY(0);
       opacity: 1;
+      pointer-events: auto;
     }
   }
 

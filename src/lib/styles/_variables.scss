@@ -148,15 +148,6 @@ $path-img: "/img";
 /// Path to font assets, relative to the site root
 $path-fonts: "/fonts";
 
-/// Media query breakpoints.
-$breakpoints: (
-  small: 0,
-  medium: 640px,
-  large: 1024px,
-  xlarge: 1200px,
-  xxlarge: 1440px,
-);
-
 /// Site primary color
 /// @alias $cd-green
 $color-primary: $cd-green;
@@ -180,6 +171,18 @@ $color-white: $white;
 /// Black alias
 /// @alias $black
 $color-black: $black;
+
+/// Utility danger color
+/// @alias $cd-red
+$color-danger: $cd-red;
+
+/// Utility warning color
+/// @alias $cd-gold
+$color-warning: $cd-gold;
+
+/// Utility success color
+/// @alias $cd-green-light
+$color-success: $cd-green-light;
 
 /// Site primary gradient
 $gradient-primary:

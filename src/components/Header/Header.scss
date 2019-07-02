@@ -44,7 +44,7 @@
 
   &__menuToggle {
 
-    @include breakpoint(medium) {
+    @include breakpoint($nav-menu-breakpoint-up) {
       display: none;
     }
   }

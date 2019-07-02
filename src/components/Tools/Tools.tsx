@@ -53,7 +53,7 @@ const Tools: React.FC<ToolsProps> = ({ className, ...props }) => {
         <ul className="Tools__list">
           {ICONS.map(icon => (
             <li key={icon.label} className="Tools__item">
-              <IconWithHoverLabel {...icon} imgAlt={`${icon.label} logo`} />
+              <IconWithHoverLabel {...icon} imgAlt={`${icon.label} logo`} tabIndex={0} />
             </li>
           ))}
         </ul>

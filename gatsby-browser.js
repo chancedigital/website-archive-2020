@@ -1,5 +1,10 @@
+// import React from 'react';
+import smoothscroll from 'smoothscroll-polyfill';
 import 'unfetch';
+import 'what-input';
 import '@lib/styles/app.scss';
+
+smoothscroll.polyfill();
 
 export const shouldUpdateScroll = ({
   prevRouterProps,
@@ -19,3 +24,7 @@ export const shouldUpdateScroll = ({
   }
   return true;
 };
+
+/* export const wrapRootElement = ({ element }) => {
+  return <ContactSectionProvider>{element}</ContactSectionProvider>;
+}; */

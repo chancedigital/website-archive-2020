@@ -1,4 +1,9 @@
-export const inViewport = (el: HTMLElement, h?: number) => {
+/**
+ * Tests whether or not a DOM element is in the viewport
+ * @param el - The element to search for
+ * @param allIn - Whether or not to wait until the element is entirely in the viewport
+ */
+export function inViewport(el: HTMLElement, allIn: boolean = false): boolean {
   const docElem = window.document.documentElement;
 
   function getViewportH() {
@@ -40,10 +45,5 @@ export const inViewport = (el: HTMLElement, h?: number) => {
   const elTop = getOffset(el).top;
   const elBottom = elTop + elH;
 
-  // if 0, the element is considered in the viewport as soon as it enters.
-  // if 1, the element is considered in the viewport only when it's fully inside
-  // value in percentage (1 >= h >= 0)
-  h = h || 0;
-
-  return elTop + elH * h <= viewed && elBottom >= scrolled;
+  return elTop + elH * Number(allIn) <= viewed && elBottom >= scrolled;
 };

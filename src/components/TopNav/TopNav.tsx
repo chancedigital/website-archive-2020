@@ -1,16 +1,11 @@
 import React, { useRef } from 'react';
 import cx from 'classnames';
 import { useSpring, animated } from 'react-spring';
-import Menu, { MenuItemData } from '@components/Menu';
-import { TOP_NAV_MENU } from '@lib/constants';
+import Menu from '@components/Menu';
 import { Element } from '@lib/types';
-import { useMeasure, usePrevious, useMediaLayout } from '@lib/hooks';
+import { useMeasure, usePrevious, useBreakpoint } from '@lib/hooks';
+import { navMenuBreakpointDown } from '@lib/styles/breakpoints';
 import './TopNav.scss';
-
-const MENU_ITEMS: MenuItemData[] = TOP_NAV_MENU.map((item, i) => ({
-  ...item,
-  id: i + 1,
-}));
 
 export interface TopNavProps extends Element<'nav'> {
   menuIsActive: boolean;
@@ -22,8 +17,26 @@ const TopNav: React.FC<TopNavProps> = ({
   menuIsActive,
   ...props
 }) => {
+  const navItems = [
+    {
+      label: 'How We Can Help',
+      href: '#capes',
+    },
+    {
+      label: 'Tools We Use',
+      href: '#tools',
+    },
+    {
+      label: `Let's Talk`,
+      onClick: () => void null,
+    },
+  ].map((item, i) => ({
+    ...item,
+    id: i + 1,
+  }));
+
   const menuWrapper = useRef<HTMLDivElement>(null);
-  const togglable = useMediaLayout({ maxWidth: 639 }, true);
+  const togglable = useBreakpoint(`${navMenuBreakpointDown} down`);
   const prevMenuActiveState = usePrevious(menuIsActive);
   const { height: viewHeight } = useMeasure(menuWrapper);
   const { height, transform } = useSpring<any>({
@@ -59,7 +72,7 @@ const TopNav: React.FC<TopNavProps> = ({
           blockClass="TopNav"
           className="TopNav__menu"
           isActive={menuIsActive}
-          items={MENU_ITEMS}
+          items={navItems}
           togglable={togglable}
         />
       </animated.div>
