@@ -577,7 +577,6 @@
 }
 
 @mixin unbutton {
-
   &,
   &[type="button"] {
     display: inline-block;
@@ -591,5 +590,6 @@
     font-size: inherit;
     text-align: inherit;
     text-decoration: inherit;
+    @content;
   }
 }

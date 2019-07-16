@@ -1,0 +1,112 @@
+.A11yControls {
+  $toggle-size: 50;
+  position: fixed;
+  z-index: 10;
+  right: rem($grid-gap-sm / 2);
+  bottom: rem($grid-gap-sm / 2);
+
+  @include breakpoint(medium) {
+    right: rem($grid-gap / 2);
+    bottom: rem($grid-gap / 2);
+  }
+
+  &__toggle {
+    @include unbutton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: rem($toggle-size);
+      height: rem($toggle-size);
+      transition: all 300ms ease-out;
+      border: 0;
+      border-radius: rem($toggle-size / 2);
+      background: $cd-medium-gray;
+      box-shadow: 0 0 rem(4) rgba($black, 0);
+      color: $white;
+    }
+
+    &:hover {
+      background: $cd-dark-gray;
+      box-shadow: 0 rem(4) rem(10) rgba($black, 0.375);
+    }
+
+    &--active {
+      background: $color-primary;
+    }
+
+    &--active:hover {
+      background: $color-primary-dark;
+    }
+  }
+
+  &__icon {
+    width: rem($toggle-size / 1.25);
+    height: rem($toggle-size / 1.25);
+    fill: $white;
+  }
+
+  &__menuWrapper {
+    //display: none;
+    position: absolute;
+    right: rem($grid-gap-sm / 2);
+    bottom: rem($toggle-size + 10);
+    width: rem(300);
+    max-width: calc(100vw - #{$grid-gap-sm * 2});
+    transition: box-shadow 800ms ease-out 300ms;
+    background: $white;
+
+    @include breakpoint(medium) {
+      right: rem($grid-gap / 2);
+    }
+
+    &--active {
+      box-shadow: $global-drop-shadow;
+    }
+  }
+
+  &__menu {
+    display: grid;
+    grid-template: auto / auto;
+    gap: $grid-gap-sm / 2;
+    margin: 0;
+    padding: rem(16);
+    transition: 0.5s all ease-in-out;
+    transition-delay: 0.4s;
+    background: $white;
+    box-shadow: none;
+    list-style: none;
+  }
+
+  &__menuItem {
+    display: grid;
+    grid-template: auto / 1fr 1fr;
+    gap: $grid-gap-sm;
+
+    > * {
+      align-self: center;
+    }
+  }
+
+  &__menuButton {
+    @include unbutton {
+      padding: $grid-gap-sm / 2;
+      border: 1px solid $cd-light-gray;
+      text-align: center;
+    }
+  }
+
+  &__menuState {
+    text-align: right;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &:hover,
+    &:focus,
+    &__toggle,
+    &__toggle:hover,
+    &__toggle:focus {
+      transition: none !important;
+    }
+  }
+}

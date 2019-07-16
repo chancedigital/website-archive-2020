@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { useStaticQuery, StaticQuery, graphql } from 'gatsby';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
+import A11yControls from '@components/A11yControls';
 import { SkipNavLink, SkipNavContent } from '@components/SkipNav';
 import { Element } from '@lib/types';
 import { useScrollPosition, useScrollYPosition } from '@lib/hooks';
@@ -24,6 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children, className }) => {
   return (
     <div className={cx('Layout', className)}>
       <SkipNavLink className="skipnav" />
+      <A11yControls />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="Layout__contentWrapper">
         <SkipNavContent />

@@ -23,7 +23,7 @@
       "@images/*": ["src/images/*"],
       "@lib/*": ["src/lib/*"],
       "@pages/*": ["src/pages/*"],
-      "@providers/*": ["src/providers/*"],
+      "@providers/*": ["src/lib/providers/*"],
       "@templates/*": ["src/templates/*"]
     }
   },

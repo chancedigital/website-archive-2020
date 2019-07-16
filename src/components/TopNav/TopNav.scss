@@ -33,6 +33,11 @@
     right: $grid-gap-sm;
     transition: box-shadow 800ms ease-out 300ms;
 
+    @include breakpoint(medium) {
+      top: calc(100% - #{rem($grid-gap)});
+      right: $grid-gap;
+    }
+
     &--active {
       box-shadow: $global-drop-shadow;
     }
