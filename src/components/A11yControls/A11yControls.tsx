@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import cx from 'classnames';
 import { useSpring, animated } from 'react-spring';
 import { startCase, camelCase, upperFirst } from 'lodash';
@@ -130,6 +131,17 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
 
   return (
     <div className="A11yControls">
+      <Helmet
+        htmlAttributes={{
+          class: cx({
+            [`textSize--${a11yContext.textSize}`]: a11yContext.textSize,
+            [`contrast--${a11yContext.contrast}`]: a11yContext.contrast,
+            'desaturate': a11yContext.saturation,
+            'noFonts': a11yContext.fonts,
+            'largeCursor': a11yContext.largeCursor,
+          }),
+        }}
+      />
       <button
         className={cx('A11yControls__toggle', {
           'A11yControls__toggle--active': a11ySettingsSelected,
@@ -160,7 +172,9 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
                 <li key={id} className="A11yControls__menuItem">
                   <button
                     onClick={getClickHandler(id)}
-                    className="A11yControls__menuButton"
+                    className={cx('A11yControls__menuButton', {
+                      'A11yControls__menuButton--active': a11yContext[id]
+                    })}
                     tabIndex={isActive ? 0 : -1}
                   >
                     {label}

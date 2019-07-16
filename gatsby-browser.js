@@ -2,7 +2,7 @@ import React from 'react';
 import '@lib/polyfills';
 import 'what-input';
 import '@lib/styles/app.scss';
-import {A11yProvider} from '@lib/providers';
+import { A11yProvider } from '@lib/providers';
 
 export const shouldUpdateScroll = ({
   prevRouterProps,

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import cx from 'classnames';
-import { useStaticQuery, StaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import A11yControls from '@components/A11yControls';
 import { SkipNavLink, SkipNavContent } from '@components/SkipNav';
 import { Element } from '@lib/types';
-import { useScrollPosition, useScrollYPosition } from '@lib/hooks';
+// import { useScrollPosition, useScrollYPosition } from '@lib/hooks';
 import './Layout.scss';
 
 export interface LayoutProps extends Element<'div'> {}
