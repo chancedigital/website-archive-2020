@@ -93,9 +93,17 @@
       border: 1px solid $cd-light-gray;
       text-align: center;
     }
+
+    &--active {
+      border: 1px $color-primary solid;
+      color: $color-primary;
+    }
   }
 
   &__menuState {
+    color: $cd-dark-gray;
+    font-size: smaller;
+    font-weight: $fw-bold;
     text-align: right;
   }
 

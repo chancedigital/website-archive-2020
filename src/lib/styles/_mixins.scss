@@ -343,7 +343,7 @@
 
 /// Applies the primary gradient background
 @mixin make-primary-gradient {
-  background-color: saturate(darken($color-primary, 10%), 10%);
+  background-color: $cd-green-dark;
   background-image: $gradient-primary;
 }
 
@@ -386,12 +386,12 @@
   appearance: none;
 
   &:hover {
-    border-color: darken($border-color, 15%);
+    border-color: $cd-xdark-gray;
     outline: none;
   }
 
   &:focus {
-    border-color: darken($border-color, 30%);
+    border-color: $cd-green-dark;
 
     [data-whatintent="mouse"] & {
       outline: none;
@@ -442,18 +442,18 @@
 @mixin form-select {
   @include form-field;
   padding-right: 1.75rem;
-  background-image: select-arrow($cd-light-gray);
+  background-image: select-arrow(#545654);
   background-origin: content-box;
   background-repeat: no-repeat;
   background-position: right -1rem center;
   background-size: 9px 6px;
 
   &:hover {
-    background-image: select-arrow(darken($border-color, 15%));
+    background-image: select-arrow(#66c62e);
   }
 
   &:focus {
-    background-image: select-arrow(darken($border-color, 30%));
+    background-image: select-arrow(#545654);
   }
 }
 

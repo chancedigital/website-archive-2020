@@ -2,11 +2,11 @@ import React, { createContext, useReducer } from 'react';
 export const providers = '';
 
 export interface A11yStateProps {
-  contrast: string;
+  contrast: boolean | string;
   saturation: boolean;
   largeCursor: boolean;
   fonts: boolean;
-  textSize: string;
+  textSize: boolean | string;
 }
 
 export interface A11yContextProps extends A11yStateProps {
@@ -14,11 +14,11 @@ export interface A11yContextProps extends A11yStateProps {
 }
 
 export const a11yInitialState: A11yStateProps = {
-  contrast: 'normal',
+  contrast: false,
   saturation: false,
   largeCursor: false,
   fonts: false,
-  textSize: 'normal',
+  textSize: false,
 };
 
 export const A11yContext = createContext<A11yContextProps>({
@@ -26,8 +26,8 @@ export const A11yContext = createContext<A11yContextProps>({
   dispatch: () => void null,
 });
 
-const contrastOpts = ['normal', 'high', 'highest'];
-const textSizeOpts = ['normal', 'large', 'largest'];
+const contrastOpts = [false, 'high', 'highest'];
+const textSizeOpts = [false, 'large', 'largest'];
 
 export function a11yReducer(
   state: A11yStateProps,

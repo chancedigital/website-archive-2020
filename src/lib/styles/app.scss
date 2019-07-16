@@ -6,18 +6,3 @@
 @import "_vendor/normalize";
 @import "_vendor/prismjs";
 @import "base/base";
-
-:root {
-  --cd-green: $cd-green;
-  --cd-red: $cd-red;
-  --cd-gold: $cd-gold;
-  --cd-blue: $cd-blue;
-  --cd-dark-gray: $cd-dark-gray;
-  --cd-medium-gray: $cd-medium-gray;
-  --cd-light-gray: $cd-light-gray;
-  --cd-light-xgray: $cd-xlight-gray;
-  --cd-green-light: $cd-green-light;
-  --cd-green-dark: $cd-green-dark;
-  --white: $white;
-  --black: $black;
-}
