@@ -11,7 +11,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         '@images': path.join(__dirname, './src/images'),
         '@lib': path.join(__dirname, './src/lib'),
         '@pages': path.join(__dirname, './src/pages'),
-        '@providers': path.join(__dirname, './src/providers'),
+        '@providers': path.join(__dirname, './src/lib/providers'),
         '@templates': path.join(__dirname, './src/templates'),
       },
     },

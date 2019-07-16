@@ -61,7 +61,7 @@ const TopNav: React.FC<TopNavProps> = ({
     // Override for users who prefer reduced motion
     if (prefersReducedMotion) navHeight = menuIsActive ? 'auto' : 0;
 
-    navStyle = { height: navHeight };
+    navStyle = { height: navHeight, overflow: 'hidden' };
   }
 
   return (

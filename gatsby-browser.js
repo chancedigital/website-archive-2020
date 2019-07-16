@@ -1,7 +1,8 @@
-// import React from 'react';
+import React from 'react';
 import '@lib/polyfills';
 import 'what-input';
 import '@lib/styles/app.scss';
+import {A11yProvider} from '@lib/providers';
 
 export const shouldUpdateScroll = ({
   prevRouterProps,
@@ -22,6 +23,6 @@ export const shouldUpdateScroll = ({
   return true;
 };
 
-/* export const wrapRootElement = ({ element }) => {
-  return <ContactSectionProvider>{element}</ContactSectionProvider>;
-}; */
+export const wrapRootElement = ({ element }) => {
+  return <A11yProvider>{element}</A11yProvider>;
+};

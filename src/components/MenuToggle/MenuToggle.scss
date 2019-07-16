@@ -9,9 +9,10 @@
   justify-content: center;
 
   &__button {
-    @include unbutton;
-    position: relative;
-    transition: transform 400ms cubic-bezier(0.3, 0, 0.3, 0.99) !important;
+    @include unbutton {
+      position: relative;
+      transition: transform 400ms cubic-bezier(0.3, 0, 0.3, 0.99) !important;
+    }
   }
 
   &__line {
