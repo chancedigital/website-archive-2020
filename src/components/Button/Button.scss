@@ -196,6 +196,14 @@
     }
 
   } // --loading
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &:before,
+    &:after {
+      transition: none !important;
+    }
+  }
 }
 
 // Overrides for submit input buttons.

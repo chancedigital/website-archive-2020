@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = props => {
         <div className="Footer__main">
           <div className="Footer__content">
             <p className="Footer__credit">
-              <a className="Footer__creditLink" href="http://chancedigital.io">
+              <a className="Footer__creditLink" href="http://chancedigital.io" rel="nofollow">
                 Crafted with Care by{' '}
                 <CDLogo alt noMargin size="small" className="Footer__cdLogo" />
               </a>{' '}

@@ -77,4 +77,11 @@
     @include text-sm;
     margin-top: 2em;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__reviewWrapper {
+      transform: translateY(0) !important;
+      transition: none;
+    }
+  }
 }

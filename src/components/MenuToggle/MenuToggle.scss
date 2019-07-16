@@ -12,10 +12,6 @@
     @include unbutton;
     position: relative;
     transition: transform 400ms cubic-bezier(0.3, 0, 0.3, 0.99) !important;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none !important;
-    }
   }
 
   &__line {
@@ -54,6 +50,14 @@
       &:nth-child(3) {
         transform: translateY(-#{$hamburger-margin + $hamburger-line-height}px) rotate(-45deg);
       }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &__button,
+    &__line {
+      transition: none !important;
     }
   }
 }

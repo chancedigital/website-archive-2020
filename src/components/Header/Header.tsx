@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
-import { Link } from 'gatsby';
 import TopNav from '@components/TopNav';
 import MenuToggle from '@components/MenuToggle';
 import SRT from '@components/SRT';
@@ -61,9 +60,9 @@ const Header: React.FC<HeaderProps> = ({
         {isHome ? (
           <SiteTitle />
         ) : (
-          <Link to="/">
+          <a href="/">
             <SiteTitle />
-          </Link>
+          </a>
         )}
       </LogoWrapper>
       <div className="Header__navWrapper">

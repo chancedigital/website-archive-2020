@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { useSpring, animated } from 'react-spring';
 import Menu from '@components/Menu';
 import { Element } from '@lib/types';
-import { useMeasure, usePrevious, useBreakpoint } from '@lib/hooks';
+import { useMeasure, useMedia, usePrevious, useBreakpoint } from '@lib/hooks';
 import { navMenuBreakpointDown } from '@lib/styles/breakpoints';
 import './TopNav.scss';
 
@@ -28,13 +28,13 @@ const TopNav: React.FC<TopNavProps> = ({
     },
     {
       label: `Let's Talk`,
-      href: 'contact',
+      href: '/contact',
     },
   ].map((item, i) => ({
     ...item,
     id: i + 1,
   }));
-
+  const prefersReducedMotion = useMedia({ prefersReducedMotion: 'reduce' });
   const menuWrapper = useRef<HTMLDivElement>(null);
   const togglable = useBreakpoint(`${navMenuBreakpointDown} down`);
   const prevMenuActiveState = usePrevious(menuIsActive);
@@ -50,25 +50,33 @@ const TopNav: React.FC<TopNavProps> = ({
     },
   });
 
+  // Nav style for animations
+  let navStyle = {};
+  let navHeight = height;
+  if (togglable) {
+    // Active menu
+    if (menuIsActive && prevMenuActiveState === menuIsActive)
+      navHeight = 'auto';
+
+    // Override for users who prefer reduced motion
+    if (prefersReducedMotion) navHeight = menuIsActive ? 'auto' : 0;
+
+    navStyle = { height: navHeight };
+  }
+
   return (
     <animated.nav
       aria-label="Site navigation"
       className={cx(`TopNav`, className, {
         'TopNav--active': menuIsActive,
       })}
-      style={
-        togglable
-          ? {
-              height:
-                menuIsActive && prevMenuActiveState === menuIsActive
-                  ? 'auto'
-                  : height,
-            }
-          : {}
-      }
+      style={navStyle}
       {...props}
     >
-      <animated.div style={togglable ? { transform } : {}} ref={menuWrapper}>
+      <animated.div
+        style={togglable && !prefersReducedMotion ? { transform } : {}}
+        ref={menuWrapper}
+      >
         <Menu
           blockClass="TopNav"
           className="TopNav__menu"

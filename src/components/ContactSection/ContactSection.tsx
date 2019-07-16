@@ -48,8 +48,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
         ...data,
       }),
     })
-      .then(res => {
-        console.log(res);
+      .then(() => {
         navigate('/thanks');
       })
       .catch(console.error); // TODO: Set errors

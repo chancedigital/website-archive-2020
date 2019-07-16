@@ -30,14 +30,19 @@ const MenuLink: React.FC<MenuLinkProps> = ({
     relProp || target === '_blank' ? 'noopener noreferrer' : undefined;
   if (onClick) {
     return (
-      <button className={cx(classNames, 'Menu__link--button')} onClick={onClick} type="button" {...props}>
+      <button
+        className={cx(classNames, 'Menu__link--button')}
+        onClick={onClick}
+        type="button"
+        {...props}
+      >
         {label}
       </button>
     );
   }
   if (href) {
     const hrefIsUrl = isValidUrl(href);
-    return hrefIsUrl || href.indexOf('#') === 0 ? (
+    return hrefIsUrl || href.indexOf('/') === -1 ? (
       <a
         className={classNames}
         href={href}

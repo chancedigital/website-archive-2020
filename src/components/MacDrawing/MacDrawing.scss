@@ -31,6 +31,10 @@
 
   &__img {
     opacity: 0;
+
+    @media (prefers-reduced-motion: reduce) {
+      opacity: 1;
+    }
   }
 
   &__svg {
@@ -40,6 +44,18 @@
       stroke-width: 3;
       stroke: #66c62e;
       fill: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1 !important;
+
+    &__img {
+      opacity: 1 !important;
+    }
+
+    &__svg {
+      opacity: 0 !important;
     }
   }
 }
