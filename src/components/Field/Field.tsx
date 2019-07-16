@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import SRT from '@components/SRT';
 import { Field as FormikField } from 'formik';
+import SRT from '@components/SRT';
+import { useId } from '@lib/hooks';
 import './Field.scss';
 
 const Field: React.FC<any> = ({
@@ -18,6 +19,7 @@ const Field: React.FC<any> = ({
   type,
   ...rest
 }) => {
+  const errorId = useId('error');
   return (
     <label className={cx(className, 'Field')}>
       <span
@@ -35,6 +37,8 @@ const Field: React.FC<any> = ({
         ) : null}
       </span>
       <FormikField
+        aria-invalid={errors && touched}
+        aria-describedby={errors && touched ? errorId : undefined}
         className={cx('Field__field', {
           [`Field__field--${type}`]: type,
           [`Field__field--${component}`]: component,
@@ -50,7 +54,11 @@ const Field: React.FC<any> = ({
       >
         {children}
       </FormikField>
-      {errors && touched && <div className="Field__errors">{errors}</div>}
+      {errors && touched && (
+        <div id={errorId} className="Field__errors">
+          {errors}
+        </div>
+      )}
     </label>
   );
 };

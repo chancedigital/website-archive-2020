@@ -35,7 +35,8 @@
       }
     }
 
-    &--error {
+    &--error,
+    &--error:hover:not(:focus) {
       border-color: $color-danger;
     }
   }
