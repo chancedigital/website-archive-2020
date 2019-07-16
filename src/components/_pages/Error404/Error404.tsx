@@ -1,12 +1,13 @@
 import React from 'react';
+import cx from 'classnames';
 import PageHeader from '@components/PageHeader';
 import Layout from '@components/Layout';
 import SEO from '@components/SEO';
 import './Error404.scss';
 
-const Error404: React.FC<{ data: any }> = () => {
+const Error404: React.FC<{ data: any, transitionStatus: any }> = ({ transitionStatus }) => {
   return (
-    <Layout className="Error404">
+    <Layout className={cx('Error404', transitionStatus)}>
       <SEO title="404: Danger!" />
       <PageHeader
         buttonHref="/"

@@ -32,7 +32,7 @@ const MENU_ITEMS = [
 
 const SocialNav: React.FC<SocialNavProps> = ({ className }) => {
   return (
-    <nav className={cx('SocialNav', className)}>
+    <nav className={cx('SocialNav', className)} aria-label="Social media links">
       <ul className="SocialNav__menu">
         {MENU_ITEMS.map(({ property, url }) => {
           const SocialIcon = Icon[property];

@@ -52,6 +52,7 @@ const TopNav: React.FC<TopNavProps> = ({
 
   return (
     <animated.nav
+      aria-label="Site navigation"
       className={cx(`TopNav`, className, {
         'TopNav--active': menuIsActive,
       })}

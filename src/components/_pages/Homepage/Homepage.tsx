@@ -10,9 +10,11 @@ import CTABlock from '@components/CTABlock';
 import SEO from '@components/SEO';
 import './Homepage.scss';
 
-const Homepage: React.FC<{ data: any }> = () => {
+const Homepage: React.FC<{ data: any; transitionStatus: any }> = ({
+  transitionStatus,
+}) => {
   return (
-    <Layout className="Homepage">
+    <Layout className={cx('Homepage', transitionStatus)}>
       <SEO
         title="Modern Development for the Modern Web"
         description="We create high-impact websites and apps that drive user engagement and leave a lasting impression for your audience."

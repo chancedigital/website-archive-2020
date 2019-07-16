@@ -28,7 +28,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   ...props
 }) => {
   return (
-    <header
+    <div
       className={cx(`PageHeader`, className, {
         'PageHeader--fullHeight': fullHeight,
       })}
@@ -53,7 +53,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           {renderImage ? renderImage({ className: 'PageHeader__image' }) : null}
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 

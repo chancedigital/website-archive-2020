@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import TextCard from '@components/TextCard';
 import { Element } from '@lib/types';
+import { useId } from '@lib/hooks';
 import './Capabilities.scss';
 
 const CARDS = [
@@ -26,10 +27,17 @@ const CARDS = [
 export interface CapabilitiesProps extends Element<'section'> {}
 
 const Capabilities: React.FC<CapabilitiesProps> = ({ className, ...props }) => {
+  const titleId = useId('capes');
   return (
-    <section className={cx('Capabilities', className)} {...props}>
+    <section
+      aria-labelledby={titleId}
+      className={cx('Capabilities', className)}
+      {...props}
+    >
       <div className="Capabilities__container">
-        <h2 className="Capabilities__heading">Things We Do</h2>
+        <h2 id={titleId} className="Capabilities__heading">
+          Things We Do
+        </h2>
         <ul className="Capabilities__list">
           {CARDS.map(card => (
             <li key={card.heading} className="Capabilities__item">

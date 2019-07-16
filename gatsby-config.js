@@ -8,6 +8,7 @@ module.exports = {
     author: `@chancethedev`,
   },
   plugins: [
+    'gatsby-plugin-transition-link',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
     {

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { navigate } from "gatsby"
+import { navigate } from 'gatsby';
 import * as Yup from 'yup';
 import fetch from 'unfetch';
 import { Element } from '@lib/types';
@@ -48,12 +48,19 @@ const ContactSection: React.FC<ContactSectionProps> = ({
         ...data,
       }),
     })
-      .then(() => navigate('/thanks'))
+      .then(res => {
+        console.log(res);
+        navigate('/thanks');
+      })
       .catch(console.error); // TODO: Set errors
   };
 
   return (
-    <section className={cx(`ContactSection`, className)} {...props}>
+    <section
+      aria-label="Contact form"
+      className={cx(`ContactSection`, className)}
+      {...props}
+    >
       <div className="ContactSection__container">
         <Form
           buttonText="Submit"

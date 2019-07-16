@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import cx from 'classnames';
 import { Element } from '@lib/types';
-import { useInterval, useMeasure } from '@lib/hooks';
+import { useInterval, useMeasure, useId } from '@lib/hooks';
 import Button from '@components/Button';
 import './CTABlock.scss';
 
@@ -23,6 +23,7 @@ const REVIEWS = [
 export interface CTABlockProps extends Element<'section'> {}
 
 const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
+  const titleId = useId('cta');
   const [activeReviewIndex, setActiveIndex] = useState(0);
 
   // Create refs for each review component
@@ -40,9 +41,15 @@ const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
   }, 5500);
 
   return (
-    <section className={cx('CTABlock', className)} {...props}>
+    <section
+      aria-labelledby={titleId}
+      className={cx('CTABlock', className)}
+      {...props}
+    >
       <div className="CTABlock__container">
-        <h2 className="CTABlock__heading">Let’s Talk</h2>
+        <h2 id={titleId} className="CTABlock__heading">
+          Let’s Talk
+        </h2>
         <div className="CTABlock__contentWrapper">
           <div className="CTABlock__content">
             <p>
@@ -53,10 +60,7 @@ const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
               head-on … well, now you’re speaking my love language! Let’s grab
               coffee and see if we can tackle the future together.
             </p>
-            <Button
-              className="CTABlock__button"
-              href="/contact"
-            >
+            <Button className="CTABlock__button" href="/contact">
               Get In Touch
             </Button>
           </div>

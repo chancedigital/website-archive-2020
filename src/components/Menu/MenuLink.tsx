@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Link } from 'gatsby';
+// import { TransitionLink as Link } from 'gatsby-plugin-transition-link';
 import { GatsbyLinkProps } from 'gatsby-link';
 import { isValidUrl } from '@lib/utils';
 

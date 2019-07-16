@@ -25,10 +25,10 @@ const Layout: React.FC<LayoutProps> = ({ children, className }) => {
     <div className={cx('Layout', className)}>
       <SkipNavLink className="skipnav" />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div className="Layout__contentWrapper">
+      <main className="Layout__contentWrapper">
         <SkipNavContent />
         <div className="Layout__contentArea">{children}</div>
-      </div>
+      </main>
       <Footer />
     </div>
   );

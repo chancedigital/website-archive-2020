@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import IconWithHoverLabel from '@components/IconWithHoverLabel';
+import { useId } from '@lib/hooks';
 import { Element } from '@lib/types';
 import './Tools.scss';
 
@@ -46,14 +47,25 @@ const ICONS = [
 export interface ToolsProps extends Element<'section'> {}
 
 const Tools: React.FC<ToolsProps> = ({ className, ...props }) => {
+  const titleId = useId('tools');
   return (
-    <section className={cx('Tools', className)} {...props}>
+    <section
+      aria-labelledby={titleId}
+      className={cx('Tools', className)}
+      {...props}
+    >
       <div className="Tools__container">
-        <h2 className="Tools__heading">Tools of the Trade</h2>
+        <h2 id={titleId} className="Tools__heading">
+          Tools of the Trade
+        </h2>
         <ul className="Tools__list">
           {ICONS.map(icon => (
             <li key={icon.label} className="Tools__item">
-              <IconWithHoverLabel {...icon} imgAlt={`${icon.label} logo`} tabIndex={0} />
+              <IconWithHoverLabel
+                {...icon}
+                imgAlt={`${icon.label} logo`}
+                tabIndex={0}
+              />
             </li>
           ))}
         </ul>

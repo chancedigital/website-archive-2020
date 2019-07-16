@@ -29,7 +29,11 @@ export interface HeaderProps extends Element<'header'> {
 const SiteTitle: React.FC = () => {
   return (
     <React.Fragment>
-      <img src="/img/logos/logo-long-box-color.svg" aria-hidden />
+      <img
+        src="/img/logos/logo-long-box-color.svg"
+        aria-hidden
+        alt="Chance Digital logo"
+      />
       <SRT>Chance Digital</SRT>
     </React.Fragment>
   );

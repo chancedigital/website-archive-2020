@@ -1,13 +1,17 @@
 import React from 'react';
+import cx from 'classnames';
+
 import PageHeader from '@components/PageHeader';
 import Layout from '@components/Layout';
 import SEO from '@components/SEO';
 import ContactSection from '@components/ContactSection';
 import './ContactPage.scss';
 
-const ContactPage: React.FC<{ data: any }> = () => {
+const ContactPage: React.FC<{ data: any; transitionStatus: any }> = ({
+  transitionStatus,
+}) => {
   return (
-    <Layout className="ContactPage">
+    <Layout className={cx('ContactPage', transitionStatus)}>
       <SEO
         title="Get In Touch"
         description="You're one step away from reinventing your business on the web. What are you waiting for? Contact us today."
