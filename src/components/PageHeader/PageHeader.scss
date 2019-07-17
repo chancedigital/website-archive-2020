@@ -26,7 +26,7 @@
     margin: rem(100) 0;
 
     @include breakpoint(small only) {
-      grid-template-rows: minmax(rem(200), 68vw) auto;
+      grid-template-rows: minmax(rem(200), auto) auto;
 
       > *:first-child {
         grid-row: 2 / 3;

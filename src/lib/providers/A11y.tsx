@@ -4,7 +4,6 @@ export const providers = '';
 export interface A11yStateProps {
   contrast: boolean | string;
   saturation: boolean;
-  largeCursor: boolean;
   fonts: boolean;
   textSize: boolean | string;
 }
@@ -16,7 +15,6 @@ export interface A11yContextProps extends A11yStateProps {
 export const a11yInitialState: A11yStateProps = {
   contrast: false,
   saturation: false,
-  largeCursor: false,
   fonts: false,
   textSize: false,
 };
@@ -86,11 +84,6 @@ export function a11yReducer(
       return {
         ...state,
         saturation: !state.saturation,
-      };
-    case 'toggleLargeCursor':
-      return {
-        ...state,
-        largeCursor: !state.largeCursor,
       };
     case 'toggleFonts':
       return {

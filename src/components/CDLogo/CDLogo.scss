@@ -1,8 +1,8 @@
 .CDLogo {
   $self: &;
   display: inline-block;
-  width: 284px;
-  height: 48px;
+  width: rem(284);
+  height: rem(48);
   margin: $mg-vertical-sm $mg-horiz;
   overflow: hidden;
   opacity: 1;
@@ -25,8 +25,8 @@
   }
 
   &--alt {
-    width: 107px;
-    height: 60px;
+    width: rem(107);
+    height: rem(60);
     background-image: url("#{$path-img}/logos/logo-short-color.svg");
 
     &#{$self}--black {
@@ -40,8 +40,8 @@
   }
 
   &--small {
-    width: 52px;
-    height: 30px;
+    width: rem(52);
+    height: rem(30);
     background-image: url("#{$path-img}/logos/logo-mark-color.svg");
 
     &#{$self}--black {
@@ -53,8 +53,8 @@
     }
 
     &#{$self}--alt {
-      width: 80px;
-      height: 14.5px;
+      width: rem(80);
+      height: rem(14.5);
       background-image: url("#{$path-img}/logos/logo-short-color.svg");
 
       &#{$self}--black {
