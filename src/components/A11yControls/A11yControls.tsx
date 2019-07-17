@@ -6,7 +6,7 @@ import { startCase, camelCase, upperFirst } from 'lodash';
 // import { Link } from 'gatsby';
 import SRT from '@components/SRT';
 import SVG, { SVGProps } from '@components/SVG';
-import { useMeasure, useMedia, usePrevious } from '@lib/hooks';
+import { useMeasure, useMedia, usePrevious, useId } from '@lib/hooks';
 import { A11yStateProps, A11yContext, a11yInitialState } from '@lib/providers';
 import './A11yControls.scss';
 
@@ -50,10 +50,6 @@ const menuItems: A11yControlsItemProps[] = [
     id: 'fonts',
     label: 'Fonts',
   },
-  {
-    id: 'largeCursor',
-    label: 'Cursor',
-  },
 ];
 
 export const A11yControls: React.FC<A11yControlsProps> = ({
@@ -64,6 +60,7 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
   onClick: onClick,
   ...rest
 }) => {
+  const menuId = `a11y-menu-${useId()}`;
   const a11yContext = useContext(A11yContext);
   const [isActive, toggle] = useState(false);
   const prevActiveState = usePrevious(isActive);
@@ -116,8 +113,6 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
         return state === true ? 'Desaturated' : startCase(label);
       case 'fonts':
         return state === true ? 'Reset' : startCase(label);
-      case 'largeCursor':
-        return state === true ? 'Large' : startCase(label);
       default:
         return startCase(label);
     }
@@ -136,13 +131,15 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
           class: cx({
             [`textSize--${a11yContext.textSize}`]: a11yContext.textSize,
             [`contrast--${a11yContext.contrast}`]: a11yContext.contrast,
-            'desaturate': a11yContext.saturation,
-            'noFonts': a11yContext.fonts,
-            'largeCursor': a11yContext.largeCursor,
+            desaturate: a11yContext.saturation,
+            noFonts: a11yContext.fonts,
           }),
         }}
       />
       <button
+        type="button"
+        aria-controls={menuId}
+        aria-expanded={isActive}
         className={cx('A11yControls__toggle', {
           'A11yControls__toggle--active': a11ySettingsSelected,
         })}
@@ -152,6 +149,7 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
         <SRT>Toggle Accessibility Menu</SRT>
       </button>
       <animated.div
+        id={menuId}
         style={menuStyle}
         className={cx('A11yControls__menuWrapper', {
           'A11yControls__menuWrapper--active': isActive,
@@ -171,9 +169,11 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
               return (
                 <li key={id} className="A11yControls__menuItem">
                   <button
+                    type="button"
+                    aria-pressed={Boolean(a11yContext[id])}
                     onClick={getClickHandler(id)}
                     className={cx('A11yControls__menuButton', {
-                      'A11yControls__menuButton--active': a11yContext[id]
+                      'A11yControls__menuButton--active': a11yContext[id],
                     })}
                     tabIndex={isActive ? 0 : -1}
                   >

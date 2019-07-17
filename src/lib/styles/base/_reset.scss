@@ -1,4 +1,4 @@
-// stylelint-disable selector-max-id
+// stylelint-disable selector-max-id, no-descending-specificity
 html,
 body,
 #___gatsby,
@@ -10,6 +10,152 @@ div[role="group"] {
 
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
+  }
+}
+
+html {
+  &.textSize {
+    &--large {
+      font-size: 17px;
+      @include breakpoint(medium) {
+        font-size: 18px;
+      }
+      @include breakpoint(large) {
+        font-size: 20px;
+      }
+    }
+    &--largest {
+      font-size: 18px;
+      @include breakpoint(medium) {
+        font-size: 20px;
+      }
+      @include breakpoint(large) {
+        font-size: 22px;
+      }
+    }
+  }
+
+  &.contrast {
+    &--high {
+      --cd-green: #3d7a19;
+      --cd-xdark-gray: #333533;
+      --cd-dark-gray: #333533;
+      --cd-medium-gray: #333533;
+      --cd-light-gray: #999c99;
+      --cd-xlight-gray: #ffffff;
+      --cd-border-gray: #ffffff;
+      --black: #000000;
+
+      img,
+      svg {
+        filter: contrast(120%);
+      }
+    }
+    &--highest {
+      --cd-green: #3d7a19;
+      --cd-xdark-gray: #000000;
+      --cd-dark-gray: #000000;
+      --cd-medium-gray: #000000;
+      --cd-light-gray: #000000;
+      --cd-xlight-gray: #ffffff;
+      --cd-border-gray: #ffffff;
+      --black: #000000;
+
+      img,
+      svg {
+        filter: contrast(150%);
+      }
+    }
+  }
+
+  &.desaturate {
+    --cd-green: #7a7a7a;
+    --cd-green-light: #{saturate(lighten(#7a7a7a, 10%), 5)};
+    --cd-green-dark: #{desaturate(darken(#7a7a7a, 6%), 8)};
+    --cd-red: #9c9c9c;
+    --cd-gold: #999999;
+    --cd-blue: #7e7e7e;
+    --cd-xdark-gray: #353535;
+    --cd-dark-gray: #575757;
+    --cd-medium-gray: #9c9c9c;
+    --cd-light-gray: #c7c7c7;
+    --cd-xlight-gray: #f3f3f3;
+    --cd-border-gray: #{desaturate(darken(#c0c0c0, 15%), 20)};
+    --white: #ffffff;
+    --black: #222222;
+    --gradient-primary:
+      radial-gradient(
+        circle at 100% 100%,
+        #{rgba(darken(#7a7a7a, 10%), 0.25)} 0%,
+        #{rgba(darken(#7a7a7a, 10%), 0)} 100%
+      ),
+      radial-gradient(
+        circle at 0% 50%,
+        #{rgba(saturate(lighten(#777777, 10%), 5), 0.75)} 0%,
+        #{rgba(saturate(lighten(#777777, 10%), 5), 0)} 50%
+      );
+
+    img,
+    svg {
+      filter: saturate(0);
+    }
+
+    &.contrast {
+      &--high {
+        --cd-green: #494949;
+        --cd-green-light: #585858;
+        --cd-green-dark: #494949;
+        --cd-red: #494949;
+        --cd-blue: #494949;
+        --cd-gold: #494949;
+        --cd-xdark-gray: #313431;
+        --cd-dark-gray: #333333;
+        --cd-medium-gray: #333333;
+        --cd-light-gray: #9b9b9b;
+        --cd-xlight-gray: #ffffff;
+        --cd-border-gray: #ffffff;
+        --black: #000000;
+
+        img,
+        svg {
+          filter: saturate(0) contrast(120%);
+        }
+      }
+
+      &--highest {
+        --cd-green: #494949;
+        --cd-green-light: #494949;
+        --cd-green-dark: #494949;
+        --cd-red: #494949;
+        --cd-blue: #494949;
+        --cd-gold: #494949;
+        --cd-xdark-gray: #000000;
+        --cd-dark-gray: #000000;
+        --cd-medium-gray: #000000;
+        --cd-light-gray: #000000;
+        --cd-xlight-gray: #ffffff;
+        --cd-border-gray: #ffffff;
+        --black: #000000;
+
+        img,
+        svg {
+          filter: saturate(0) contrast(150%);
+        }
+      }
+    }
+  }
+
+  &.noFonts * {
+    font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen-Sans,
+      Ubuntu,
+      Cantarell,
+      "Helvetica Neue",
+      sans-serif !important;
   }
 }
 
