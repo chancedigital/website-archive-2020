@@ -37,7 +37,9 @@ html {
 
   &.contrast {
     &--high {
-      --cd-green: #3d7a19;
+      --cd-green: #{desaturate(darken(#66c62e, 6%), 8)};
+      --cd-green-dark: #{desaturate(darken(#66c62e, 10%), 8)};
+      --cd-green-light: #{desaturate(darken(#66c62e, 6%), 8)};
       --cd-xdark-gray: #333533;
       --cd-dark-gray: #333533;
       --cd-medium-gray: #333533;
@@ -52,7 +54,9 @@ html {
       }
     }
     &--highest {
-      --cd-green: #3d7a19;
+      --cd-green: #{desaturate(darken(#66c62e, 12%), 8)};
+      --cd-green-dark: #{desaturate(darken(#66c62e, 20%), 8)};
+      --cd-green-light: #{desaturate(darken(#66c62e, 12%), 8)};
       --cd-xdark-gray: #000000;
       --cd-dark-gray: #000000;
       --cd-medium-gray: #000000;
