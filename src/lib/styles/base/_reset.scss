@@ -37,9 +37,9 @@ html {
 
   &.contrast {
     &--high {
-      --cd-green: #{desaturate(darken(#66c62e, 6%), 8)};
-      --cd-green-dark: #{desaturate(darken(#66c62e, 10%), 8)};
-      --cd-green-light: #{desaturate(darken(#66c62e, 6%), 8)};
+      --cd-green: #{desaturate(darken(#66c62e, 14%), 8)};
+      --cd-green-dark: #{desaturate(darken(#66c62e, 20%), 8)};
+      --cd-green-light: #{desaturate(darken(#66c62e, 14%), 8)};
       --cd-xdark-gray: #333533;
       --cd-dark-gray: #333533;
       --cd-medium-gray: #333533;
@@ -54,9 +54,9 @@ html {
       }
     }
     &--highest {
-      --cd-green: #{desaturate(darken(#66c62e, 12%), 8)};
-      --cd-green-dark: #{desaturate(darken(#66c62e, 20%), 8)};
-      --cd-green-light: #{desaturate(darken(#66c62e, 12%), 8)};
+      --cd-green: #{desaturate(darken(#66c62e, 20%), 8)};
+      --cd-green-dark: #{desaturate(darken(#66c62e, 24%), 8)};
+      --cd-green-light: #{desaturate(darken(#66c62e, 20%), 8)};
       --cd-xdark-gray: #000000;
       --cd-dark-gray: #000000;
       --cd-medium-gray: #000000;
@@ -118,6 +118,7 @@ html {
         --cd-light-gray: #9b9b9b;
         --cd-xlight-gray: #ffffff;
         --cd-border-gray: #ffffff;
+        --gradient-primary: #313431;
         --black: #000000;
 
         img,
@@ -127,9 +128,9 @@ html {
       }
 
       &--highest {
-        --cd-green: #494949;
+        --cd-green: #303030;
         --cd-green-light: #494949;
-        --cd-green-dark: #494949;
+        --cd-green-dark: #000000;
         --cd-red: #494949;
         --cd-blue: #494949;
         --cd-gold: #494949;
@@ -140,6 +141,7 @@ html {
         --cd-xlight-gray: #ffffff;
         --cd-border-gray: #ffffff;
         --black: #000000;
+        --gradient-primary: #000000;
 
         img,
         svg {
