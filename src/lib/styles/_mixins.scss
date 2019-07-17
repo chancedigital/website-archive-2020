@@ -162,7 +162,7 @@
 /// Applies link styles for negative (light-text-on-dark-color) spaces
 @mixin text-link-reverse {
   @include text-link;
-  border-color: rgba($white, 0.8);
+  border-color: rgba(#fff, 0.8);
   color: $white;
 
   &:visited,
@@ -420,8 +420,13 @@
 
   &::placeholder {
     opacity: 1; // Required for MS Edge
-    color: rgba($color-input-text, 0.5);
+    color: var(--cd-medium-gray);
     font-style: italic;
+
+    &.html.contrast--high &,
+    &.html.contrast--highest & {
+      color: var(--cd-dark-gray);
+    }
   }
 }
 

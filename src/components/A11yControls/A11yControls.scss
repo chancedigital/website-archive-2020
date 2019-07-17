@@ -21,7 +21,7 @@
       border: 0;
       border-radius: rem($toggle-size / 2);
       background: $cd-medium-gray;
-      box-shadow: 0 0 rem(4) rgba($black, 0);
+      box-shadow: 0 0 rem(4) rgba(#202120, 0);
       color: $white;
 
       html.desaturate & {
@@ -31,7 +31,7 @@
 
     &:hover {
       background: $cd-dark-gray;
-      box-shadow: 0 rem(4) rem(10) rgba($black, 0.375);
+      box-shadow: 0 rem(4) rem(10) rgba(#202120, 0.375);
     }
 
     &--active {
