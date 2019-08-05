@@ -374,7 +374,9 @@
   margin-right: $mg-horiz / 2;
   margin-bottom: $mg-vertical-sm;
   padding: #{$mg-vertical-sm / 4} $mg-horiz;
-  transition: 0.5s all ease-in-out;
+  transition:
+    border 500ms ease-out,
+    color 500ms ease-out;
   border: 1px solid $cd-light-gray;
   border-radius: 0;
   background: white;
@@ -582,19 +584,16 @@
 }
 
 @mixin unbutton {
-  &,
-  &[type="button"] {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    transition: inherit;
-    border: none;
-    appearance: none;
-    background: 0;
-    font-family: inherit;
-    font-size: inherit;
-    text-align: inherit;
-    text-decoration: inherit;
-    @content;
-  }
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  transition: inherit;
+  border: none;
+  appearance: none;
+  background: 0;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  @content;
 }

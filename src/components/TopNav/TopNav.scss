@@ -44,7 +44,7 @@
 
     &__menu {
       display: block;
-      transition: 0.5s all ease-in-out;
+      transition: transform 500ms ease-in-out;
       transition-delay: 0.4s;
       background: $white;
       box-shadow: none;

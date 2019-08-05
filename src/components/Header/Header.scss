@@ -1,4 +1,8 @@
 .Header {
+  // Hard-coding so the SVG doesn't scale poorly in buggy browsers
+  $logo-width: 260;
+  $logo-height: 44;
+
   @include full-width;
   $self: &;
   display: grid;
@@ -6,13 +10,12 @@
   z-index: 2;
   top: 0;
   left: 0;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: rem($logo-width) auto;
   gap: rem(15);
   padding: rem($grid-gap-sm);
-  transition: 0.2s all ease-in-out;
+  transition: background 0.2s ease-out;
 
   @include breakpoint(medium) {
-    grid-template-columns: 1fr 2fr;
     padding: rem($grid-gap);
   }
 
@@ -26,8 +29,8 @@
     img,
     svg {
       display: block;
-      width: rem(260);
-      height: rem(44);
+      width: rem($logo-width);
+      height: rem($logo-height);
     }
   }
 

@@ -13,6 +13,7 @@
   &__toggle {
     @include unbutton {
       display: flex;
+      position: relative;
       align-items: center;
       justify-content: center;
       width: rem($toggle-size);
@@ -109,5 +110,25 @@
     font-size: smaller;
     font-weight: $fw-bold;
     text-align: right;
+  }
+
+  &__selectedMarker {
+    display: flex;
+    position: absolute;
+    top: rem(-3);
+    right: rem(-3);
+    align-items: center;
+    justify-content: center;
+    width: rem(16);
+    height: rem(16);
+    border: 2px solid $white;
+    border-radius: 50%;
+    background: $color-primary-dark;
+  }
+
+  &__selectedIcon {
+    width: rem(10);
+    height: rem(10);
+    fill: $white;
   }
 }

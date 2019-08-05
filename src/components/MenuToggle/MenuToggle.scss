@@ -20,7 +20,9 @@
     width: #{$hamburger-width}px;
     height: #{$hamburger-line-height}px;
     margin: #{$hamburger-margin}px auto;
-    transition: all 200ms ease-out;
+    transition:
+      opacity 200ms ease-out,
+      transform 200ms ease-out;
     background-color: $black;
 
     &:nth-child(1) {

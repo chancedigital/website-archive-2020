@@ -20,6 +20,14 @@ const A11yIcon = ({ children, viewBox, ...props }: SVGProps) => {
   );
 };
 
+const CheckIcon = ({ children, viewBox, ...props }: SVGProps) => {
+  return (
+    <SVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+    </SVG>
+  );
+};
+
 export interface A11yControlsProps {
   className?: string;
   disabled?: boolean;
@@ -145,8 +153,17 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
         })}
         onClick={() => toggle(!isActive)}
       >
-        <A11yIcon className="A11yControls__icon" />
         <SRT>Toggle Accessibility Menu</SRT>
+        <A11yIcon className="A11yControls__icon" />
+        {a11ySettingsSelected ? (
+          <div
+            className="A11yControls__selectedMarker"
+            aria-hidden
+            role="presentation"
+          >
+            <CheckIcon className="A11yControls__selectedIcon" />
+          </div>
+        ) : null}
       </button>
       <animated.div
         id={menuId}

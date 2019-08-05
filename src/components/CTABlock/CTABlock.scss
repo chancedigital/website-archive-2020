@@ -54,7 +54,9 @@
     margin: 0;
     padding: 0;
     transform: translateY(rem(24) * -1);
-    transition: 750ms all ease-out;
+    transition:
+      opacity 750ms ease-out,
+      transform 750ms ease-out;
     opacity: 0;
     pointer-events: none;
 

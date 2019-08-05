@@ -24,7 +24,9 @@
     height: rem(14);
     transform: scale(1);
     transform-origin: center;
-    transition: all 0.2s ease-in-out;
+    transition:
+      transform 0.2s ease-out,
+      color 0.2s ease-out;
     border-radius: 50%;
     color: #fff;
 
