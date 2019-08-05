@@ -92,10 +92,12 @@ export const Button: React.FC<ButtonProps> = ({
     ...rest,
   };
 
+  const inner = <span className="Button__inner">{children}</span>
+
   return href ? (
-    <LinkEl {...linkProps}>{children}</LinkEl>
+    <LinkEl {...linkProps}>{inner}</LinkEl>
   ) : (
-    <NonLinkEl {...nonLinkProps}>{children}</NonLinkEl>
+    <NonLinkEl {...nonLinkProps}>{inner}</NonLinkEl>
   );
 };
 

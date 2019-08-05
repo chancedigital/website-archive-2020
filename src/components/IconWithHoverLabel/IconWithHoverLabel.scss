@@ -37,11 +37,4 @@
       transform: translateY(rem(8) * -1);
     }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    &__label,
-    &__img {
-      transition: none;
-    }
-  }
 }
