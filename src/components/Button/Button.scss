@@ -1,4 +1,4 @@
-@mixin button-box-shadow($color: $color-link) {
+@mixin button-box-shadow($color: v(cd-green)) {
   box-shadow: 4px -4px 0 transparent;
 
   &:hover:not(:active) {
@@ -7,7 +7,7 @@
 }
 
 .Button {
-  @include button-box-shadow($color-link);
+  @include button-box-shadow(v(cd-green));
 
   &,
   &:link,
@@ -26,10 +26,10 @@
       box-shadow 200ms ease-out,
       border 200ms ease-out,
       color 200ms ease-out;
-    border: 2px solid $color-link;
+    border: 2px solid v(cd-green);
     border-radius: 0;
     background: transparent;
-    color: $color-black;
+    color: v(black);
     font-size: rem(14);
     font-weight: 600;
     text-align: center;
@@ -49,14 +49,14 @@
     transform: scaleX(0);
     transform-origin: center;
     transition: inherit;
-    background: $color-link;
+    background: v(cd-green);
   }
 
   &:hover,
   &:focus {
     transform: translate(0, 0);
-    border-color: $color-white;
-    color: $color-white;
+    border-color: v(white);
+    color: v(white);
     text-decoration: none;
 
     &:before {
@@ -84,9 +84,9 @@
 
     &:hover,
     &:focus {
-      border-color: $color-link;
+      border-color: v(cd-green);
       background: transparent;
-      color: $color-black;
+      color: v(black);
     }
   } // [disabled]
 
@@ -97,61 +97,61 @@
   } // --block
 
   &--secondary {
-    @include button-box-shadow($color-accent);
+    @include button-box-shadow(v(cd-red));
 
     &,
     &:link,
     &:visited {
-      border-color: $color-accent;
+      border-color: v(cd-red);
     }
 
     &:hover,
     &:focus {
-      border-color: $color-white;
-      color: $color-white;
+      border-color: v(white);
+      color: v(white);
     }
 
     &:before {
-      background: $color-accent;
+      background: v(cd-red);
     }
 
     &[disabled] {
       &:hover,
       &:focus {
-        border-color: $color-accent;
+        border-color: v(cd-red);
         background: transparent;
-        color: $color-black;
+        color: v(black);
       }
     }
 
   } // --secondary
 
   &--tertiary {
-    @include button-box-shadow($color-text-default);
+    @include button-box-shadow(v(black));
 
     &,
     &:link,
     &:visited {
-      border-color: $color-text-default;
-      color: $color-text-default;
+      border-color: v(black);
+      color: v(black);
     }
 
     &:hover,
     &:focus {
-      border-color: $color-white;
-      color: $color-white;
+      border-color: v(white);
+      color: v(white);
     }
 
     &:before {
-      background: $color-text-default;
+      background: v(black);
     }
 
     &[disabled] {
       &:hover,
       &:focus {
-        border-color: $color-text-default;
+        border-color: v(black);
         background: transparent;
-        color: $color-text-default;
+        color: v(black);
       }
     }
   } // --tertiary
@@ -161,19 +161,19 @@
     &,
     &:link,
     &:visited {
-      border-color: $color-white;
+      border-color: v(white);
       background: none;
-      color: $color-white;
+      color: v(white);
     }
 
     &:hover,
     &:focus {
-      border-color: $color-white;
-      color: $color-link;
+      border-color: v(white);
+      color: v(cd-green);
     }
 
     &:before {
-      background: $color-white;
+      background: v(white);
     }
   } // --inverted
 
@@ -208,18 +208,18 @@ input[type="submit"] {
   @extend .Button;
 
   &.Button {
-    @include button-hover-override($color-link);
+    @include button-hover-override(v(cd-green));
   }
 
   &.Button--secondary {
-    @include button-hover-override($color-accent);
+    @include button-hover-override(v(cd-red));
   }
 
   &.Button--tertiary {
-    @include button-hover-override($color-text-default);
+    @include button-hover-override(v(black));
   }
 
   &.Button--inverted {
-    @include button-hover-override($color-white);
+    @include button-hover-override(v(white));
   }
 }

@@ -21,33 +21,33 @@
       transition: background 300ms ease-out, box-shadow 300ms ease-out;
       border: 0;
       border-radius: rem($toggle-size / 2);
-      background: $cd-medium-gray;
+      background: v(black);
       box-shadow: 0 0 rem(4) rgba(#202120, 0);
-      color: $white;
+      color: v(white);
 
       html.desaturate & {
-        border: 2px solid $white;
+        border: 2px solid v(white);
       }
     }
 
     &:hover {
-      background: $cd-dark-gray;
+      background: v(cd-dark-gray);
       box-shadow: 0 rem(4) rem(10) rgba(#202120, 0.375);
     }
 
     &--active {
-      background: $color-primary;
+      background: v(cd-green);
     }
 
     &--active:hover {
-      background: $color-primary-dark;
+      background: v(cd-green-dark);
     }
   }
 
   &__icon {
     width: rem($toggle-size / 1.25);
     height: rem($toggle-size / 1.25);
-    fill: $white;
+    fill: v(white);
   }
 
   &__menuWrapper {
@@ -58,7 +58,7 @@
     width: rem(300);
     max-width: calc(100vw - #{$grid-gap-sm * 2});
     transition: box-shadow 800ms ease-out 300ms;
-    background: $white;
+    background: v(white);
 
     @include breakpoint(medium) {
       right: rem($grid-gap / 2);
@@ -77,7 +77,7 @@
     padding: rem(16);
     transition: 0.5s transform ease-in-out;
     transition-delay: 0.4s;
-    background: $white;
+    background: v(white);
     box-shadow: none;
     list-style: none;
   }
@@ -95,18 +95,18 @@
   &__menuButton {
     @include unbutton {
       padding: $grid-gap-sm / 2;
-      border: 1px solid $cd-light-gray;
+      border: 1px solid v(cd-light-gray);
       text-align: center;
     }
 
     &--active {
-      border: 1px $color-primary solid;
-      color: $color-primary;
+      border: 1px v(cd-green) solid;
+      color: v(cd-green);
     }
   }
 
   &__menuState {
-    color: $cd-dark-gray;
+    color: v(cd-dark-gray);
     font-size: smaller;
     font-weight: $fw-bold;
     text-align: right;
@@ -121,14 +121,14 @@
     justify-content: center;
     width: rem(16);
     height: rem(16);
-    border: 2px solid $white;
+    border: 2px solid v(white);
     border-radius: 50%;
-    background: $color-primary-dark;
+    background: v(cd-blue);
   }
 
   &__selectedIcon {
     width: rem(10);
     height: rem(10);
-    fill: $white;
+    fill: v(white);
   }
 }

@@ -4,7 +4,7 @@
   align-items: center;
   margin: $grid-gap-sm auto;
   overflow: hidden;
-  background: $cd-xlight-gray;
+  background: v(cd-xlight-gray);
   background-position: center;
   background-size: cover;
   @include full-width;
@@ -63,7 +63,7 @@
 
     &:hover,
     &:focus {
-      border-color: $cd-xlight-gray;
+      border-color: v(cd-xlight-gray);
     }
   }
 }

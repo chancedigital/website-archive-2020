@@ -1,4 +1,5 @@
 @import "utils/bp";
+@import "utils/color-utils";
 
 /// Wraps content between psuedo elements with the Chance Digital bracket marks
 @mixin bracket-wrap {
@@ -44,7 +45,7 @@
 
 /// Applies base accent font styles
 @mixin font-accent {
-  color: $cd-light-gray;
+  color: v(cd-light-gray);
   font-family: $ff-accent;
   font-weight: 700;
   letter-spacing: 2px;
@@ -142,20 +143,20 @@
 @mixin text-link {
   transition: color 0.2s ease-in, background 0.2s ease-in, border-width 0.2s ease-in;
   border-bottom: 1px solid transparent;
-  color: $color-link;
+  color: v(cd-green);
   text-decoration: none;
 
   &:visited {
-    color: $color-link;
+    color: v(cd-green);
     text-decoration: none;
   }
 
   &:hover,
   &:focus {
     transition: color 0.2s ease-out, background 0.2s ease-out;
-    color: $color-link-hover;
+    color: v(cd-green-light);
     text-decoration: underline;
-    text-decoration-color: $color-primary-dark;
+    text-decoration-color: v(cd-green-dark);
   }
 }
 
@@ -163,17 +164,17 @@
 @mixin text-link-reverse {
   @include text-link;
   border-color: rgba(#fff, 0.8);
-  color: $white;
+  color: v(white);
 
   &:visited,
   &:hover,
   &:focus {
-    color: $white;
+    color: v(white);
   }
 
   &:hover,
   &:focus {
-    border-color: $white;
+    border-color: v(white);
   }
 }
 
@@ -230,7 +231,7 @@
 
 /// Applies hover style background color
 /// @param {Color} $color - Color value
-@mixin button-hover-override($color: $color-link) {
+@mixin button-hover-override($color: v(cd-green)) {
   &:hover,
   &:focus {
     background: $color;
@@ -343,8 +344,8 @@
 
 /// Applies the primary gradient background
 @mixin make-primary-gradient {
-  background-color: $cd-green-dark;
-  background-image: $gradient-primary;
+  background-color: v(cd-green-dark);
+  background-image: v(gradient-primary);
 }
 
 /// Applies section heading styles
@@ -358,7 +359,7 @@
 
 /// Applies section background color
 /// @param {Color} $color - Color value to apply
-@mixin section-color($color: $cd-xlight-gray) {
+@mixin section-color($color: v(cd-xlight-gray)) {
   background-color: $color;
 }
 
@@ -377,23 +378,23 @@
   transition:
     border 500ms ease-out,
     color 500ms ease-out;
-  border: 1px solid $cd-light-gray;
+  border: 1px solid v(cd-light-gray);
   border-radius: 0;
   background: white;
   box-shadow: none;
-  color: $color-input-text;
+  color: v(black);
   font-style: normal;
   text-align: left;
   vertical-align: middle;
   appearance: none;
 
   &:hover {
-    border-color: $cd-xdark-gray;
+    border-color: v(cd-xdark-gray);
     outline: none;
   }
 
   &:focus {
-    border-color: $cd-green-dark;
+    border-color: v(cd-green-dark);
 
     [data-whatintent="mouse"] & {
       outline: none;
@@ -527,7 +528,7 @@
 
 /// Applies style to markers for required form fields
 @mixin make-required {
-  color: $cd-red;
+  color: v(cd-red);
 }
 
 /// Applies styles to major page landmarks for standard templates

@@ -3,7 +3,7 @@
   @include section-padded-y;
   @include full-width;
   overflow: hidden;
-  background: $white;
+  background: v(white);
 
   &__container {
     @include make-container(wide);

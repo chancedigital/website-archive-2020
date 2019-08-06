@@ -1,0 +1,10 @@
+@function brand-gradient($color: #66c62e) {
+  @return radial-gradient(circle at 100% 100%, #{rgba(darken($color, 10%), 0.25)} 0%,
+    #{rgba(darken($color, 10%), 0)} 100%
+  ),
+  radial-gradient(
+    circle at 0% 50%,
+    #{rgba(saturate(lighten($color, 10%), 5), 0.75)} 0%,
+    #{rgba(saturate(lighten($color, 10%), 5), 0)} 50%
+  );
+}

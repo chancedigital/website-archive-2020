@@ -1,6 +1,6 @@
 .CTABlock {
   @include section-padded-y;
-  @include section-color($cd-xlight-gray);
+  @include section-color(v(cd-xlight-gray));
   @include full-width;
 
   &__container {
@@ -34,7 +34,7 @@
   &__button {
     &:hover,
     &:focus {
-      border-color: $cd-xlight-gray;
+      border-color: v(cd-xlight-gray);
     }
   }
 

@@ -1,79 +1,59 @@
 @import "utils/rem";
-
-// Brand Colors
-// Decalre CSS variables first
-:root {
-  --cd-green: #66c62e;
-  --cd-green-light: #{saturate(lighten(#66c62e, 10%), 5)};
-  --cd-green-dark: #{desaturate(darken(#66c62e, 6%), 8)};
-  --cd-red: #ff5e43;
-  --cd-gold: #ffbc14;
-  --cd-blue: #1ea4e0;
-  --cd-xdark-gray: #333533;
-  --cd-dark-gray: #545654;
-  --cd-medium-gray: #999c99;
-  --cd-light-gray: #c0c4c0;
-  --cd-xlight-gray: #eef2ee;
-  --cd-border-gray: #{desaturate(darken(#c0c4c0, 15%), 20)};
-  --white: #ffffff;
-  --black: #202120;
-  --gradient-primary:
-    radial-gradient(
-      circle at 100% 100%,
-      #{rgba(darken(#66c62e, 10%), 0.25)} 0%,
-      #{rgba(darken(#66c62e, 10%), 0)} 100%
-    ),
-    radial-gradient(
-      circle at 0% 50%,
-      #{rgba(saturate(lighten(#66c62e, 10%), 5), 0.75)} 0%,
-      #{rgba(saturate(lighten(#66c62e, 10%), 5), 0)} 50%
-    );
-}
-
+@import "utils/color-utils";
 
 /// Chance Digital Green
-$cd-green: var(--cd-green);
+$cd-green: #66c62e;
 
 /// Chance Digital Green (light variant)
-$cd-green-light: var(--cd-green-light);
+$cd-green-light: saturate(lighten($cd-green, 10%), 5);
 
 /// Chance Digital Green (dark variant)
-$cd-green-dark: var(--cd-green-dark);
+$cd-green-dark: desaturate(darken($cd-green, 6%), 8);
 
-/// Chance Digital Green: (accessibility variant)
-/// @alias $cd-green
-/// @deprecated
-$cd-green-accessible: $cd-green;
+/// Chance Digital Green (high-contrast variant)
+$cd-green-high-contrast: desaturate(darken($cd-green, 14%), 8);
+
+/// Chance Digital Green (high-contrast dark variant)
+$cd-green-dark-high-contrast: desaturate(darken($cd-green, 20%), 8);
+
+/// Chance Digital Green (high-contrast x-dark variant)
+$cd-green-xdark-high-contrast: desaturate(darken($cd-green, 24%), 8);
 
 /// Chance Digital Red
-$cd-red: var(--cd-red);
+$cd-red: #ff5e43;
 
 /// Chance Digital Gold
-$cd-gold: var(--cd-gold);
+$cd-gold:#ffbc14;
 
 /// Chance Digital Blue
-$cd-blue: var(--cd-blue);
-
-/// Chance Digital X-Dark Gray
-$cd-xdark-gray: var(--cd-xdark-gray);
+$cd-blue: #1ea4e0;
 
 /// Chance Digital Dark Gray
-$cd-dark-gray: var(--cd-dark-gray);
+$cd-dark-gray: #545654;
+
+/// Chance Digital X-Dark Gray
+$cd-xdark-gray: #333533;
 
 /// Chance Digital Medium Gray
-$cd-medium-gray: var(--cd-medium-gray);
+$cd-medium-gray: #999c99;
 
 /// Chance Digital Light Gray
-$cd-light-gray: var(--cd-light-gray);
+$cd-light-gray: #c0c4c0;
 
 /// Chance Digital X-Light Gray
-$cd-xlight-gray: var(--cd-xlight-gray);
+$cd-xlight-gray: #eef2ee;
+
+/// Chance Digital Border Gray
+$cd-border-gray: desaturate(darken($cd-light-gray, 15%), 20);
 
 /// Global White
-$white: var(--white);
+$white: #ffffff;
 
 /// Global Black
-$black: var(--black);
+$black: #202120;
+
+/// Dark Black
+$black-dark: #000000;
 
 /// IBM Plex Mono font-family definitions
 $ibm-plex-mono: (
@@ -180,118 +160,70 @@ $path-img: "/img";
 /// Path to font assets, relative to the site root
 $path-fonts: "/fonts";
 
-/// Site primary color
-/// @alias $cd-green
-$color-primary: $cd-green;
-
-/// Site primary color (light variant)
-/// @alias $cd-green-light
-$color-primary-light: $cd-green-light;
-
-/// Site primary color (dark variant)
-/// @alias $cd-green-dark
-$color-primary-dark:  $cd-green-dark;
-
-/// Site accent color
-/// @alias $cd-red
-$color-accent: $cd-red;
-
-/// White alias
-/// @alias $white
-$color-white: $white;
-
-/// Black alias
-/// @alias $black
-$color-black: $black;
-
-/// Utility danger color
-/// @alias $cd-red
-$color-danger: $cd-red;
-
-/// Utility warning color
-/// @alias $cd-gold
-$color-warning: $cd-gold;
-
-/// Utility success color
-/// @alias $cd-green-light
-$color-success: $cd-green-light;
-
 /// Site primary gradient
-$gradient-primary: var(--gradient-primary);
-
-/// Global text color
-/// @alias $black
-$color-text-default: $black;
-
-/// Dark text color
-/// @alias $black
-$color-text-dark: $black;
-
-/// Heading text color
-/// @alias $black
-$color-text-heading: $black;
-
-/// `pre` text color
-/// @alias $cd-dark-gray
-$color-text-pre: $cd-dark-gray;
-
-/// `pre` background color
-/// @alias $cd-dark-gray
-$color-background-pre: $cd-xlight-gray;
-
-/// Global link color
-/// @alias $cd-green
-$color-link: $cd-green;
-
-/// Global link hover color
-/// @alias $cd-green-light
-$color-link-hover: $cd-green-light;
-
-/// Global link visited color
-$color-link-visited: $cd-green-dark;
-
-/// Footer text color
-/// @alias $white
-$color-footer-text: $white;
-
-/// Form input text color
-/// @alias $black
-$color-input-text: $black;
-
-/// Navigation toggle background color
-/// @alias $cd-green
-$color-nav-toggle-background: $cd-green;
-
-/// Navigation accordion focus background color
-/// @alias $cd-green-dark
-$color-nav-accordion-primary-focus-background: $cd-green-dark;
-
-/// Navigation accordion text color
-/// @alias $white
-$color-nav-accordion-primary-text: $color-white;
-
-/// Navigation accordion focus background color
-/// @alias $cd-light-gray
-$color-nav-accordion-gray-focus-background: $cd-light-gray;
-
-/// Navigation accordion gray text color
-/// @alias $cd-dark-gray
-$color-nav-accordion-gray-text: $cd-dark-gray;
-
-/// Label background color
-/// @alias $white
-$label-background: $white;
-
-/// Label background hover color
-/// @alias $cd-xlight-gray
-$label-background-hover: $cd-xlight-gray;
-
-/// Global border color
-/// @alias $cd-green
-$border-color: $cd-green;
+$gradient-primary: brand-gradient($cd-green);
 
 /// Global border color (light variant)
-$border-color-light: var(--cd-border-gray);
+/// @alias $cd-border-gray
+$border-color-light: $cd-border-gray;
 
 /// Global drop shadow
-$global-drop-shadow: 0 rem(20) rem(70) rem(-30) rgba(#202120, 0.5);
+$global-drop-shadow: 0 rem(20) rem(70) rem(-30) rgba($black, 0.5);
+
+$brand-colors: (
+  cd-green: $cd-green,
+  cd-green-light: $cd-green-light,
+  cd-green-dark: $cd-green-dark,
+  cd-red: $cd-red,
+  cd-gold: $cd-gold,
+  cd-blue: $cd-blue,
+  cd-xdark-gray: $cd-xdark-gray,
+  cd-dark-gray: $cd-dark-gray,
+  cd-medium-gray: $cd-medium-gray,
+  cd-light-gray: $cd-light-gray,
+  cd-xlight-gray: $cd-xlight-gray,
+  cd-border-gray: $cd-border-gray,
+  white: $white,
+  black: $black,
+  color-text: $black,
+  color-text-heading: $black,
+  color-text-pre: $cd-dark-gray,
+);
+
+$contrast-colors: (
+  high: (
+    cd-green: $cd-green-high-contrast,
+    cd-green-dark: $cd-green-dark-high-contrast,
+    cd-green-light: $cd-green-high-contrast,
+    cd-dark-gray: $cd-xdark-gray,
+    cd-medium-gray: $cd-xdark-gray,
+    cd-light-gray: $cd-medium-gray,
+    cd-xlight-gray: $white,
+    cd-border-gray: $white,
+    black: $black-dark,
+    color-text: $black-dark,
+    color-text-heading: $black-dark,
+    color-text-pre: $cd-xdark-gray,
+  ),
+  highest: (
+    cd-green: $cd-green-dark-high-contrast,
+    cd-green-dark: $cd-green-xdark-high-contrast,
+    cd-green-light: $cd-green-dark-high-contrast,
+    cd-xdark-gray: $black-dark,
+    cd-dark-gray: $black-dark,
+    cd-medium-gray: $black-dark,
+    cd-light-gray: $black-dark,
+    cd-xlight-gray: $white,
+    cd-border-gray: $white,
+    black: $black-dark,
+    color-text: $black-dark,
+    color-text-heading: $black-dark,
+    color-text-pre: $black-dark,
+  ),
+);
+
+:root {
+  @each $color, $value in $brand-colors {
+    --#{$color}: #{$value};
+  }
+}
