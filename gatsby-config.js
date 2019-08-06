@@ -58,13 +58,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-nprogress',
-      options: {
-        color: '#66c62e',
-        showSpinner: false,
-      },
-    },
-    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
