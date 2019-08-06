@@ -10,20 +10,16 @@ import './ContactSection.scss';
 
 const FORM_SCHEMA = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, 'Too Short')
-    .max(50, 'Too Long!')
     .required('First Name is required'),
   lastName: Yup.string()
-    .min(2, 'Too Short')
-    .max(50, 'Too Long!')
     .required('Last Name is required'),
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
   comments: Yup.string()
-    .min(20, 'Too Short')
-    .max(5000, 'Too Long!')
-    .required('Context is required'),
+    .min(10, 'Message is too short. Try to give us some more context!')
+    .max(2500, 'Message is too long. Try giving us an overview; we will reach out for more context if needed!')
+    .required('Message is required'),
 });
 
 export interface ContactSectionProps extends Element<'section'> {}
@@ -119,6 +115,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                   showLabel
                   errors={props.errors.comments}
                   touched={props.touched.comments}
+                  spellCheck={true}
                   rows={10}
                 />
               </React.Fragment>
