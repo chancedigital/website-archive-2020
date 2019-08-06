@@ -179,10 +179,6 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
         >
           <ul className="A11yControls__menu">
             {menuItems.map(({ id, label }) => {
-              let stateText = a11yContext[id];
-              if (typeof stateText === 'boolean') {
-                stateText = stateText === true ? 'On' : 'Off';
-              }
               return (
                 <li key={id} className="A11yControls__menuItem">
                   <button
