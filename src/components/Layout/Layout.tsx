@@ -25,7 +25,6 @@ const Layout: React.FC<LayoutProps> = ({ children, className }) => {
   return (
     <div className={cx('Layout', className)}>
       <SkipNavLink className="skipnav" />
-      <A11yControls />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="Layout__contentWrapper">
         <SkipNavContent />

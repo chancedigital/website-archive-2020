@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Link } from 'gatsby';
 import TopNav from '@components/TopNav';
 import MenuToggle from '@components/MenuToggle';
+import A11yControls from '@components/A11yControls';
 import SRT from '@components/SRT';
 import { Element } from '@lib/types';
 import { useId, useScrollYPosition } from '@lib/hooks';
@@ -57,6 +58,7 @@ const Header: React.FC<HeaderProps> = ({
       })}
       {...props}
     >
+      <A11yControls />
       <LogoWrapper className="Header__logo">
         {isHome ? (
           <SiteTitle />
