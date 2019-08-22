@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({
       })}
       {...props}
     >
-      <A11yControls />
+      {/* <A11yControls /> */}
       <LogoWrapper className="Header__logo">
         {isHome ? (
           <SiteTitle />
