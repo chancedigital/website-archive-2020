@@ -2,6 +2,7 @@
 
 [chancedigital.io](https://chancedigital.io)
 
+This is my digital marketing site, check it out!
 To run this site, open your terminal, navigate to the directory you want to store the files in, and run:
 
 ```bash
