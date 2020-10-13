@@ -13,15 +13,15 @@
     "gatsby-plugin"
   ],
   "author": "Chance Strickland <hi@chancedigital.io>",
-  "homepage": "https://github.com/chancestrickland/gatsby-plugin-simple-anchors#readme",
+  "homepage": "https://github.com/chaance/gatsby-plugin-simple-anchors#readme",
   "license": "MIT",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/chancestrickland/gatsby-plugin-simple-anchors"
+    "url": "https://github.com/chaance/gatsby-plugin-simple-anchors"
   },
   "bugs": {
-    "url": "https://github.com/chancestrickland/gatsby-plugin-simple-anchors/issues"
+    "url": "https://github.com/chaance/gatsby-plugin-simple-anchors/issues"
   },
   "peerDependencies": {
     "gatsby": "^2.0.0"

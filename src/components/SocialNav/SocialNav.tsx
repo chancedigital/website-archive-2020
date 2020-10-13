@@ -22,7 +22,7 @@ const MENU_ITEMS = [
   },
   {
     property: 'GitHub',
-    url: 'https://github.com/chancestrickland',
+    url: 'https://github.com/chaance',
   },
   {
     property: 'CodePen',
