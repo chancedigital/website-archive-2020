@@ -6,7 +6,7 @@ import Footer from '@components/Footer';
 // import A11yControls from '@components/A11yControls';
 import { SkipNavLink, SkipNavContent } from '@components/SkipNav';
 import { Element } from '@lib/types';
-// import { useScrollPosition, useScrollYPosition } from '@lib/hooks';
+// import { useScrollPosition } from '@lib/hooks';
 import './Layout.scss';
 
 export interface LayoutProps extends Element<'div'> {}

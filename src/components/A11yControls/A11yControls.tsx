@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import cx from 'classnames';
 import { useSpring, animated } from 'react-spring';
@@ -69,11 +69,11 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
   ...rest
 }) => {
   const menuId = `a11y-menu-${useId()}`;
-  const a11yContext = useContext(A11yContext);
-  const [isActive, toggle] = useState(false);
+  const a11yContext = React.useContext(A11yContext);
+  const [isActive, toggle] = React.useState(false);
   const prevActiveState = usePrevious(isActive);
   const prefersReducedMotion = useMedia({ prefersReducedMotion: 'reduce' });
-  const menuWrapper = useRef<HTMLDivElement>(null);
+  const menuWrapper = React.useRef<HTMLDivElement>(null);
   const { height: viewHeight } = useMeasure(menuWrapper);
   const { height, transform } = useSpring<any>({
     from: {

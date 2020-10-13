@@ -23,6 +23,7 @@
       "@images/*": ["src/images/*"],
       "@lib/*": ["src/lib/*"],
       "@pages/*": ["src/pages/*"],
+      "@plugins/*": ["plugins/*"],
       "@providers/*": ["src/lib/providers/*"],
       "@templates/*": ["src/templates/*"]
     }

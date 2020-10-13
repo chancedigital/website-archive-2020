@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { Element } from '@lib/types';
-import { useInterval, useMeasure, useId } from '@lib/hooks';
+import ResizeObserver from 'resize-observer-polyfill';
+import { useInterval, useId, useLayoutEffect } from '@lib/hooks';
 import Button from '@components/Button';
 import './CTABlock.scss';
 
@@ -12,27 +12,66 @@ const REVIEWS = [
   },
   {
     source: `JuLee Brand, DesignChik`,
-    content: `Chance suggested time-efficient and cost-effective ways for us to create a site that was user-friendly and intuitive. He never made me feel like what I was asking for was menial. Chance is our go-to guy.`,
+    content: `Chance suggests time-efficient and cost-effective ways for us to create sites that are user-friendly and intuitive. He never makes me feel like what I am asking for is menial. Chance is my go-to guy.`,
   },
   {
     source: `Kurt Reinheimer, Shared Health Alliance`,
-    content: `Chance is amazing to work with. He covers all of the details and had a knack for helping to elevate our relationships.`,
+    content: `Chance is amazing to work with. He covers all of the details and has a knack for helping to elevate our relationships.`,
   },
 ];
 
-export interface CTABlockProps extends Element<'section'> {}
+export interface CTABlockProps
+  extends React.PropsWithoutRef<JSX.IntrinsicElements['section']> {}
 
 const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
   const titleId = useId('cta');
-  const [activeReviewIndex, setActiveIndex] = useState(0);
+  const [activeReviewIndex, setActiveIndex] = React.useState(0);
 
   // Create refs for each review component
-  const quoteElements = useRef<any[]>(REVIEWS.map(React.createRef));
+  const quoteElements = React.useRef<any[]>(REVIEWS.map(React.createRef));
 
   // Create array of height measurements for each component, then find the tallest
   // to set a fixed height and prevent jank
-  const heights = quoteElements.current.map(ref => useMeasure(ref).height);
-  const boxHeight = Math.max(...heights);
+  // const heights = quoteElements.current.map((ref) => useMeasure(ref).height);
+
+  const [sizes, setSizes] = React.useState<Map<Element, DOMRect>>(new Map());
+  const sizesRef = React.useRef(sizes);
+  useLayoutEffect(() => {
+    sizesRef.current = sizes;
+  });
+
+  useLayoutEffect(() => {
+    let animationFrameId: number | null = null;
+    let measure: ResizeObserverCallback = function measure(entries) {
+      animationFrameId = window.requestAnimationFrame(() => {
+        const map = new Map(sizesRef.current);
+        for (const entry of entries) {
+          map.set(entry.target, entry.contentRect as DOMRect);
+        }
+        setSizes(map);
+      });
+    };
+
+    const ro = new ResizeObserver(measure);
+    for (const ref of quoteElements.current) {
+      ref.current && ro.observe(ref.current);
+    }
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId!);
+      ro.disconnect();
+    };
+  }, []);
+
+  const boxHeight = React.useMemo(() => {
+    let largest: number | null = null;
+    for (const [, size] of sizes) {
+      if (largest == null || size.height > largest) largest = size.height;
+    }
+    return largest;
+  }, [sizes]);
+
+  // const boxHeight = Math.max(...sizes);
 
   useInterval(() => {
     setActiveIndex(
@@ -69,7 +108,7 @@ const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
               return (
                 <li
                   key={review.source}
-                  style={{ height: `${boxHeight}px` }}
+                  style={{ height: boxHeight || undefined }}
                   className={cx('CTABlock__reviewWrapper', {
                     'CTABlock__reviewWrapper--active': i === activeReviewIndex,
                   })}

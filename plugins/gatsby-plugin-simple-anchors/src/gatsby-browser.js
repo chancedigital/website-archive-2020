@@ -1,0 +1,1 @@
+export { onRouteUpdate } from './index';

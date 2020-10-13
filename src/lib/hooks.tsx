@@ -5,11 +5,6 @@ import { json2mq, getBreakpointQueryObject, canUseDOM } from '@lib/utils';
 
 const CAN_USE_DOM = canUseDOM();
 
-type Effect = (
-  effect: React.EffectCallback,
-  deps?: React.DependencyList
-) => void;
-
 export interface DOMRectReadOnly {
   readonly x: number;
   readonly y: number;
@@ -45,7 +40,7 @@ function getScrollPosition(): ScrollPosition {
  * Creates a hook for either `React.useEffect` or `useLayoutEffect`
  * const isDesktop = useMediaLayout({ minWidth: 500 }, true);
  */
-const createUseMedia = (effect: Effect) => (
+const createUseMedia = (effect: typeof React.useEffect) => (
   rawQuery: any,
   defaultState: boolean = false
 ) => {
@@ -98,18 +93,15 @@ type IDState = string;
 
 let _id = nanoid();
 
-export const useId = (initialValue?: string | number): IDState => {
+export function useId(initialValue?: string | number): IDState {
   const [id, setId] = React.useState<IDState>(
     initialValue ? String(initialValue) : _id
   );
   React.useEffect(() => setId(nanoid()), []);
   return id;
-};
+}
 
-export const useMeasure = (
-  ref: React.RefObject<HTMLElement | null>,
-  deps: any[] = []
-) => {
+export function useMeasure(ref: React.RefObject<HTMLElement | null>) {
   const [bounds, setContentRect] = React.useState<DOMRectReadOnly>(
     // DOMRectReadOnly.fromRect()
     { x: 0, y: 0, width: 0, height: 0, top: 0, right: 0, bottom: 0, left: 0 }
@@ -132,12 +124,12 @@ export const useMeasure = (
         ro.disconnect();
       };
     }
-  }, deps);
+  }, [ref]);
 
   return bounds;
-};
+}
 
-export const useScrollPosition = (): ScrollPosition => {
+export function useScrollPosition(): ScrollPosition {
   const [position, setScrollPosition] = React.useState<ScrollPosition>(
     getScrollPosition()
   );
@@ -145,7 +137,7 @@ export const useScrollPosition = (): ScrollPosition => {
   React.useEffect((): any => {
     let requestRunning: number | null = null;
     function handleScroll() {
-      if (CAN_USE_DOM && requestRunning === null) {
+      if (requestRunning === null) {
         requestRunning = window.requestAnimationFrame(() => {
           setScrollPosition(getScrollPosition());
           requestRunning = null;
@@ -153,26 +145,14 @@ export const useScrollPosition = (): ScrollPosition => {
       }
     }
 
-    if (CAN_USE_DOM) {
-      window.addEventListener('scroll', handleScroll);
-      return () => void window.removeEventListener('scroll', handleScroll);
-    }
+    window.addEventListener('scroll', handleScroll);
+    return () => void window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return position;
-};
+}
 
-export const useScrollXPosition = (): number => {
-  const { x } = useScrollPosition();
-  return x;
-};
-
-export const useScrollYPosition = (): number => {
-  const { y } = useScrollPosition();
-  return y;
-};
-
-export const useInterval = (callback: () => any, delay: number) => {
+export function useInterval(callback: () => any, delay: number) {
   const savedCallback = React.useRef<any>();
 
   React.useEffect(() => {
@@ -188,20 +168,26 @@ export const useInterval = (callback: () => any, delay: number) => {
       return () => void clearInterval(id);
     }
   }, [delay]);
-};
+}
 
-export const useAnimationEndListener = (
-  element: HTMLElement,
+export function useAnimationEndListener(
+  elementRef: React.RefObject<HTMLElement>,
   callback: (ev: AnimationEvent, el: HTMLElement) => any
-): any => {
-  const handleAnimationEnd = (event: AnimationEvent) => {
-    callback(event, element);
-  };
-  React.useEffect((): any => {
-    if (CAN_USE_DOM) {
-      element.addEventListener('animationend', handleAnimationEnd);
-      return () =>
-        element.removeEventListener('animationend', handleAnimationEnd);
+) {
+  const callbackRef = React.useRef(callback);
+  useLayoutEffect(() => {
+    callbackRef.current = callback;
+  });
+
+  React.useEffect(() => {
+    const elem = elementRef.current;
+    const cb = callbackRef.current;
+    elem?.addEventListener('animationend', handleAnimationEnd);
+    return function () {
+      elem?.removeEventListener('animationend', handleAnimationEnd);
+    };
+    function handleAnimationEnd(event: AnimationEvent) {
+      if (elem && cb) cb(event, elem);
     }
-  }, []);
-};
+  }, [elementRef]);
+}

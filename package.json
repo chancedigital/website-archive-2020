@@ -4,7 +4,8 @@
   "author": "Chance Strickland <hi@chancedigital.io> (https://chancedigital.io/)",
   "scripts": {
     "dev": "gatsby develop",
-    "build": "rm -rf .cache && gatsby build --prefix-paths",
+    "build:plugins": "foreach -g './plugins/*' -x 'cd #{path} && yarn && yarn build'",
+    "build": "rm -rf .cache && yarn build:plugins && gatsby build --prefix-paths",
     "start": "yarn dev",
     "serve": "gatsby serve",
     "codegen": "graphql-codegen --config codegen.yml"
@@ -30,7 +31,7 @@
     "@types/yup": "0.26.22",
     "classnames": "2.2.6",
     "formik": "1.5.8",
-    "gatsby": "2.24.74",
+    "gatsby": "^2.24.74",
     "gatsby-image": "2.4.21",
     "gatsby-plugin-canonical-urls": "2.3.13",
     "gatsby-plugin-favicon": "3.1.6",
@@ -57,8 +58,8 @@
     "nanoid": "3.1.12",
     "node-sass": "4.14.1",
     "polished": "4.0.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-helmet": "6.1.0",
     "react-loadable": "5.5.0",
     "react-spring": "8.0.27",
@@ -93,6 +94,7 @@
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-react": "7.21.4",
     "eslint-plugin-react-hooks": "4.1.2",
+    "foreach-cli": "^1.8.1",
     "graphql": "15.3.0",
     "prettier": "2.1.2",
     "stylelint": "13.7.2",
@@ -105,7 +107,10 @@
     "trailingComma": "es5"
   },
   "eslintConfig": {
-    "extends": "@chancedigital/eslint-config/typescript"
+    "extends": [
+      "@chancedigital/eslint-config/react",
+      "@chancedigital/eslint-config/typescript"
+    ]
   },
   "eslintIgnore": [
     "public"

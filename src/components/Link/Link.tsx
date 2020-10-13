@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby';
 import { AnchorLink, AnchorLinkProps } from '@components/AnchorLink';

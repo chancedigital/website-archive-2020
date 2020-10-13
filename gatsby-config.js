@@ -8,6 +8,12 @@ module.exports = {
     author: `@chancethedev`,
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-simple-anchors',
+      options: {
+        offsetElement: '#site-header'
+      }
+    },
     'gatsby-plugin-transition-link',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',

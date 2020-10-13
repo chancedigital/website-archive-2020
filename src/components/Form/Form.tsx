@@ -20,18 +20,16 @@ const Form: React.FC<any> = ({
 }) => {
   const submitButton = useRef<HTMLButtonElement>(null);
   const [errors, setErrors] = useState(false);
-  if (submitButton.current) {
-    useAnimationEndListener(submitButton.current, () => void setErrors(false));
-  }
+  useAnimationEndListener(submitButton, () => void setErrors(false));
+
   return (
     <Formik
       validationSchema={schema}
       initialValues={initialValues}
       onSubmit={onSubmit}
       {...rest}
-      render={props => {
+      render={(props) => {
         return (
-          // @ts-ignore
           <form
             className={cx('Form', className)}
             onReset={props.handleReset}
@@ -46,11 +44,11 @@ const Form: React.FC<any> = ({
               })
             ) : (
               <Button
-                // ref={submitButton} // TODO: Fix ref if possible
+                ref={submitButton}
                 htmlType="submit"
                 className={cx('Form__button', buttonClassName)}
                 wobble={errors}
-                onClick={e => {
+                onClick={(e) => {
                   if (!props.isValid !== errors) {
                     setErrors(!props.isValid);
                   }

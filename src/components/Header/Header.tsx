@@ -6,7 +6,7 @@ import MenuToggle from '@components/MenuToggle';
 // import A11yControls from '@components/A11yControls';
 import SRT from '@components/SRT';
 import { Element } from '@lib/types';
-import { useId, useScrollYPosition } from '@lib/hooks';
+import { useId, useScrollPosition } from '@lib/hooks';
 import './Header.scss';
 
 // const isBrowser = typeof window !== 'undefined';
@@ -46,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({
   ...props
 }) => {
   const [menuIsActive, setMenuActive] = useState<boolean>(false);
-  const scrollY = useScrollYPosition();
+  const { y: scrollY } = useScrollPosition();
 
   const LogoWrapper = isHome ? 'div' : 'h1';
   const navId = `top-nav-${useId()}`;
