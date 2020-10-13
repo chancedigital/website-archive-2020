@@ -13,6 +13,7 @@ export interface MenuItemData {
     target?: string;
     className?: string;
     hideLabel?: boolean;
+    isHashLink?: boolean;
   };
   children?: MenuItemData[];
   redirect?: string;
@@ -42,8 +43,8 @@ const Menu: React.FC<MenuProps> = ({
     return null;
   };
 
-  const renderMenuItems = (items: MenuItemData[]) =>
-    items.map(item => {
+  const renderMenuItems = (menuItems: MenuItemData[]) =>
+    menuItems.map((item) => {
       const {
         id,
         href,
@@ -52,7 +53,12 @@ const Menu: React.FC<MenuProps> = ({
         onClick,
         redirect,
       } = item;
-      const { target, className: itemClassName, hideLabel } = options;
+      const {
+        target,
+        className: itemClassName,
+        hideLabel,
+        isHashLink,
+      } = options;
 
       return (
         <MenuItem
@@ -76,6 +82,7 @@ const Menu: React.FC<MenuProps> = ({
             label={hideLabel ? <SRT>{item.label}</SRT> : item.label}
             target={target}
             tabIndex={togglable && !isActive ? -1 : 0}
+            isHashLink={isHashLink}
           />
           {renderSubMenu(children)}
         </MenuItem>

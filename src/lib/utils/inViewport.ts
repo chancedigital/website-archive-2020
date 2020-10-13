@@ -3,7 +3,10 @@
  * @param el - The element to search for
  * @param allIn - Whether or not to wait until the element is entirely in the viewport
  */
-export function inViewport(el: HTMLElement, allIn: boolean = false): boolean {
+export function inViewport(
+  el: HTMLElement,
+  allIn: boolean | number = false
+): boolean {
   const docElem = window.document.documentElement;
 
   function getViewportH() {
@@ -12,9 +15,8 @@ export function inViewport(el: HTMLElement, allIn: boolean = false): boolean {
 
     if (client < inner) {
       return inner;
-    } else {
-      return client;
     }
+    return client;
   }
 
   function scrollY() {
@@ -22,17 +24,17 @@ export function inViewport(el: HTMLElement, allIn: boolean = false): boolean {
   }
 
   // http://stackoverflow.com/a/5598797/989439
-  function getOffset(el: any) {
+  function getOffset(elem: any) {
     let offsetTop = 0;
     let offsetLeft = 0;
     do {
-      if (!isNaN(el.offsetTop)) {
-        offsetTop += el.offsetTop;
+      if (!isNaN(elem.offsetTop)) {
+        offsetTop += elem.offsetTop;
       }
-      if (!isNaN(el.offsetLeft)) {
-        offsetLeft += el.offsetLeft;
+      if (!isNaN(elem.offsetLeft)) {
+        offsetLeft += elem.offsetLeft;
       }
-    } while ((el = el.offsetParent)); // eslint-disable-line no-cond-assign
+    } while ((elem = elem.offsetParent)); // eslint-disable-line no-cond-assign
 
     return {
       top: offsetTop,
@@ -46,4 +48,4 @@ export function inViewport(el: HTMLElement, allIn: boolean = false): boolean {
   const elBottom = elTop + elH;
 
   return elTop + elH * Number(allIn) <= viewed && elBottom >= scrolled;
-};
+}

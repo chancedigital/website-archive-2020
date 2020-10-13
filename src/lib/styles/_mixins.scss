@@ -45,7 +45,7 @@
 
 /// Applies base accent font styles
 @mixin font-accent {
-  color: v(cd-light-gray);
+  color: var(--cd-light-gray);
   font-family: $ff-accent;
   font-weight: 700;
   letter-spacing: 2px;
@@ -143,20 +143,20 @@
 @mixin text-link {
   transition: color 0.2s ease-in, background 0.2s ease-in, border-width 0.2s ease-in;
   border-bottom: 1px solid transparent;
-  color: v(cd-green);
+  color: var(--cd-green);
   text-decoration: none;
 
   &:visited {
-    color: v(cd-green);
+    color: var(--cd-green);
     text-decoration: none;
   }
 
   &:hover,
   &:focus {
     transition: color 0.2s ease-out, background 0.2s ease-out;
-    color: v(cd-green-light);
+    color: var(--cd-green-light);
     text-decoration: underline;
-    text-decoration-color: v(cd-green-dark);
+    text-decoration-color: var(--cd-green-dark);
   }
 }
 
@@ -164,17 +164,17 @@
 @mixin text-link-reverse {
   @include text-link;
   border-color: rgba(#fff, 0.8);
-  color: v(white);
+  color: var(--cd-white);
 
   &:visited,
   &:hover,
   &:focus {
-    color: v(white);
+    color: var(--cd-white);
   }
 
   &:hover,
   &:focus {
-    border-color: v(white);
+    border-color: var(--cd-white);
   }
 }
 
@@ -231,7 +231,7 @@
 
 /// Applies hover style background color
 /// @param {Color} $color - Color value
-@mixin button-hover-override($color: v(cd-green)) {
+@mixin button-hover-override($color: var(--cd-green)) {
   &:hover,
   &:focus {
     background: $color;
@@ -243,8 +243,8 @@
 @mixin make-grid($cols...) {
   display: grid;
   grid-template-columns: minmax(auto, rem(704));
-  gap: $mg-vertical-sm;
   justify-content: center;
+  gap: $mg-vertical-sm;
 
   @include breakpoint(medium) {
     gap: $mg-vertical;
@@ -344,8 +344,8 @@
 
 /// Applies the primary gradient background
 @mixin make-primary-gradient {
-  background-color: v(cd-green-dark);
-  background-image: v(gradient-primary);
+  background-color: var(--cd-green-dark);
+  background-image: var(--gradient-primary);
 }
 
 /// Applies section heading styles
@@ -359,7 +359,7 @@
 
 /// Applies section background color
 /// @param {Color} $color - Color value to apply
-@mixin section-color($color: v(cd-xlight-gray)) {
+@mixin section-color($color: var(--cd-xlight-gray)) {
   background-color: $color;
 }
 
@@ -368,6 +368,7 @@
   @include font-body;
   @include text-std;
   $field: &;
+  appearance: none;
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -378,23 +379,22 @@
   transition:
     border 500ms ease-out,
     color 500ms ease-out;
-  border: 1px solid v(cd-light-gray);
+  border: 1px solid var(--cd-light-gray);
   border-radius: 0;
   background: white;
   box-shadow: none;
-  color: v(black);
+  color: var(--cd-black);
   font-style: normal;
   text-align: left;
   vertical-align: middle;
-  appearance: none;
 
   &:hover {
-    border-color: v(cd-xdark-gray);
+    border-color: var(--cd-xdark-gray);
     outline: none;
   }
 
   &:focus {
-    border-color: v(cd-green-dark);
+    border-color: var(--cd-green-dark);
 
     [data-whatintent="mouse"] & {
       outline: none;
@@ -452,8 +452,8 @@
   padding-right: 1.75rem;
   background-image: select-arrow(#545654);
   background-origin: content-box;
-  background-repeat: no-repeat;
   background-position: right -1rem center;
+  background-repeat: no-repeat;
   background-size: 9px 6px;
 
   &:hover {
@@ -528,7 +528,7 @@
 
 /// Applies style to markers for required form fields
 @mixin make-required {
-  color: v(cd-red);
+  color: var(--cd-red);
 }
 
 /// Applies styles to major page landmarks for standard templates
@@ -553,8 +553,8 @@
   padding: 0;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
-  border: 0;
   clip-path: inset(50%);
+  border: 0;
   word-wrap: normal;
 
   &:focus {
@@ -585,12 +585,12 @@
 }
 
 @mixin unbutton {
+  appearance: none;
   display: inline-block;
   margin: 0;
   padding: 0;
   transition: inherit;
   border: none;
-  appearance: none;
   background: 0;
   font-family: inherit;
   font-size: inherit;

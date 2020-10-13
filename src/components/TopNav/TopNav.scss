@@ -46,7 +46,7 @@
       display: block;
       transition: transform 500ms ease-in-out;
       transition-delay: 0.4s;
-      background: v(white);
+      background: var(--cd-white);
       box-shadow: none;
     }
 

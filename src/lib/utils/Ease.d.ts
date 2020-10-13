@@ -1,0 +1,33 @@
+export class Ease {
+  static linear(n: number): number;
+  static inQuad(n: number): number;
+  static outQuad(n: number): number;
+  static inOutQuad(n: number): number;
+  static inCube(n: number): number;
+  static outCube(n: number): number;
+  static inOutCube(n: number): number;
+  static inQuart(n: number): number;
+  static outQuart(n: number): number;
+  static inOutQuart(n: number): number;
+  static inQuint(n: number): number;
+  static outQuint(n: number): number;
+  static inOutQuint(n: number): number;
+  static inSine(n: number): number;
+  static outSine(n: number): number;
+  static inOutSine(n: number): number;
+  static inExpo(n: number): number;
+  static outExpo(n: number): number;
+  static inOutExpo(n: number): number;
+  static inCirc(n: number): number;
+  static outCirc(n: number): number;
+  static inOutCirc(n: number): number;
+  static inBack(n: number): number;
+  static outBack(n: number): number;
+  static inOutBack(n: number): number;
+  static inBounce(n: number): number;
+  static outBounce(n: number): number;
+  static inOutBounce(n: number): number;
+  static inElastic(n: number): number;
+  static outElastic(n: number): number;
+  static inOutElastic(n: number): number;
+}

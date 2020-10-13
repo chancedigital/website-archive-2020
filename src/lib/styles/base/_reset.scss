@@ -130,7 +130,7 @@ body {
 
 ::selection {
   background: $cd-green-light;
-  color: v(black);
+  color: var(--cd-black);
 }
 
 [data-whatintent="keyboard"] :focus {

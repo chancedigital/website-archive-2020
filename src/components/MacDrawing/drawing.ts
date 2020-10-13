@@ -73,7 +73,7 @@ export const drawing = () => {
   let didScroll = false;
   let resizeTimeout: any;
   const svgs = document.querySelectorAll('svg.draw');
-  const drawings = Array.from(svgs).map(el => new Drawing(el as any));
+  const drawings = Array.from(svgs).map((el) => new Drawing(el as any));
 
   const scrollPage = () => {
     svgs.forEach((el, i) => {
@@ -125,8 +125,8 @@ export const drawing = () => {
   // Handle the svgs already shown.
   svgs.forEach((el, i) => {
     setTimeout(
-      (el => () => {
-        if (inViewport(el.parentNode as HTMLElement)) {
+      ((elem) => () => {
+        if (inViewport(elem.parentNode as HTMLElement)) {
           drawings[i].render();
         }
       })(el),

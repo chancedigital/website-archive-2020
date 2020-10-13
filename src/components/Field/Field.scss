@@ -10,8 +10,8 @@
     top: rem(-7);
     left: rem(10);
     padding: 0 rem(6);
-    background: v(white);
-    color: v(cd-medium-gray);
+    background: var(--cd-white);
+    color: var(--cd-medium-gray);
     font-size: rem(12);
     font-weight: 500;
   }
@@ -36,7 +36,7 @@
 
     &--error,
     &--error:hover:not(:focus) {
-      border-color: v(cd-red);
+      border-color: var(--cd-red);
     }
   }
 
@@ -46,7 +46,7 @@
     top: calc(100% + 4px);
     left: 2px;
     margin: 0;
-    color: v(cd-red);
+    color: var(--cd-red);
     font-size: rem(12);
     font-weight: $fw-normal;
   }

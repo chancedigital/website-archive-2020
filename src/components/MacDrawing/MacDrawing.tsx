@@ -1,9 +1,10 @@
-import React, { useState, useLayoutEffect } from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import SVG, { SVGProps } from '@components/SVG';
 import SRT from '@components/SRT';
 import { Element } from '@lib/types';
 import { drawing } from './drawing';
+import { useLayoutEffect } from '@lib/hooks';
 import './MacDrawing.scss';
 
 export interface MacDrawingProps extends Element<'section'> {}
@@ -12,13 +13,10 @@ export const MacDrawing: React.FC<MacDrawingProps> = ({
   className,
   ...props
 }) => {
-  const [drawingStarted, startDrawing] = useState(false);
-  useLayoutEffect((): any => {
-    if (typeof window !== 'undefined') {
-      const cleanup = drawing();
-      startDrawing(true);
-      return cleanup;
-    }
+  const [drawingStarted, setStartDrawing] = React.useState(false);
+  useLayoutEffect(() => {
+    setStartDrawing(true);
+    return drawing();
   }, []);
   return (
     <figure

@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { useStaticQuery, graphql } from 'gatsby';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import A11yControls from '@components/A11yControls';
+// import A11yControls from '@components/A11yControls';
 import { SkipNavLink, SkipNavContent } from '@components/SkipNav';
 import { Element } from '@lib/types';
 // import { useScrollPosition, useScrollYPosition } from '@lib/hooks';

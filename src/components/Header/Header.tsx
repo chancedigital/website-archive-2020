@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import { Link } from 'gatsby';
+import Link from '@components/Link';
 import TopNav from '@components/TopNav';
 import MenuToggle from '@components/MenuToggle';
-import A11yControls from '@components/A11yControls';
+// import A11yControls from '@components/A11yControls';
 import SRT from '@components/SRT';
 import { Element } from '@lib/types';
 import { useId, useScrollYPosition } from '@lib/hooks';
 import './Header.scss';
 
-const isBrowser = typeof window !== 'undefined';
-
-function getScrollPosition(): ScrollPosition {
-  return isBrowser
-    ? { x: window.pageXOffset, y: window.pageYOffset }
-    : { x: 0, y: 0 };
-}
+// const isBrowser = typeof window !== 'undefined';
+// function getScrollPosition(): ScrollPosition {
+//   return isBrowser
+//     ? { x: window.pageXOffset, y: window.pageYOffset }
+//     : { x: 0, y: 0 };
+// }
 
 export interface ScrollPosition {
   x: number;
@@ -53,6 +52,7 @@ const Header: React.FC<HeaderProps> = ({
   const navId = `top-nav-${useId()}`;
   return (
     <header
+      id="site-header"
       className={cx(`Header`, className, {
         'Header--sticky': scrollY > 180,
       })}
@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({
         {isHome ? (
           <SiteTitle />
         ) : (
-          <Link to="/">
+          <Link href="/">
             <SiteTitle />
           </Link>
         )}

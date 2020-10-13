@@ -26,7 +26,7 @@ export function invariant(
           'for the full error message and additional helpful warnings.'
       );
     } else {
-      var argIndex = 0;
+      let argIndex = 0;
       error = new Error(format.replace(/%s/g, () => args[argIndex++]));
       error.name = 'Invariant Violation';
     }
@@ -34,4 +34,4 @@ export function invariant(
     error.framesToPop = 1; // we don't care about invariant's own frame
     throw error;
   }
-};
+}

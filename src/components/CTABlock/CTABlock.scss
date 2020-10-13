@@ -1,6 +1,6 @@
 .CTABlock {
   @include section-padded-y;
-  @include section-color(v(cd-xlight-gray));
+  @include section-color(var(--cd-xlight-gray));
   @include full-width;
 
   &__container {
@@ -13,8 +13,8 @@
 
   &__contentWrapper {
     display: grid;
-    gap: $mg-vertical-sm;
     grid-template-columns: auto;
+    gap: $mg-vertical-sm;
 
     @include breakpoint(medium) {
       grid-template-columns: 1fr 1fr;
@@ -34,7 +34,7 @@
   &__button {
     &:hover,
     &:focus {
-      border-color: v(cd-xlight-gray);
+      border-color: var(--cd-xlight-gray);
     }
   }
 
@@ -46,13 +46,13 @@
   }
 
   &__reviewWrapper {
-    will-change: height;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     margin: 0;
     padding: 0;
+    will-change: height;
     transform: translateY(rem(24) * -1);
     transition:
       opacity 750ms ease-out,

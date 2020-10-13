@@ -33,7 +33,7 @@
     &:hover,
     &:focus {
       transform: scale(1.3);
-      color: v(cd-gold);
+      color: var(--cd-gold);
     }
 
     svg {

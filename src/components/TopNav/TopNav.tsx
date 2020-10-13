@@ -21,10 +21,16 @@ const TopNav: React.FC<TopNavProps> = ({
     {
       label: 'How We Can Help',
       href: '/#capes',
+      options: {
+        isHashLink: true,
+      },
     },
     {
       label: 'Tools We Use',
       href: '/#tools',
+      options: {
+        isHashLink: true,
+      },
     },
     {
       label: `Let's Talk`,

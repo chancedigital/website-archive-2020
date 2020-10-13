@@ -54,7 +54,7 @@ const CTABlock: React.FC<CTABlockProps> = ({ className, ...props }) => {
           <div className="CTABlock__content">
             <p>
               If you’ve got a problem you want to solve on the web, let’s talk.
-              If you are stickler for the small details and doing things the
+              If you are a stickler for the small details and doing things the
               right way, we’re on the same page. And if you are forward-thinking
               and unafraid to take on tomorrow’s technological challenges
               head-on … well, now you’re speaking my love language! Let’s grab

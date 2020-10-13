@@ -9,16 +9,17 @@ import Field from '@components/Field';
 import './ContactSection.scss';
 
 const FORM_SCHEMA = Yup.object().shape({
-  firstName: Yup.string()
-    .required('First Name is required'),
-  lastName: Yup.string()
-    .required('Last Name is required'),
+  firstName: Yup.string().required('First Name is required'),
+  lastName: Yup.string().required('Last Name is required'),
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
   comments: Yup.string()
     .min(10, 'Message is too short. Try to give us some more context!')
-    .max(2500, 'Message is too long. Try giving us an overview; we will reach out for more context if needed!')
+    .max(
+      2500,
+      'Message is too long. Try giving us an overview; we will reach out for more context if needed!'
+    )
     .required('Message is required'),
 });
 
@@ -26,7 +27,7 @@ export interface ContactSectionProps extends Element<'section'> {}
 
 function encode(data: any) {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&');
 }
 
@@ -70,10 +71,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({
           formProps={{
             name: 'contact',
             method: 'post',
-            ['data-netlify']: 'true',
-            ['data-netlify-honeypot']: 'bot-field',
+            'data-netlify': 'true',
+            'data-netlify-honeypot': 'bot-field',
           }}
-          render={(props: any) => {
+          render={(innerProps: any) => {
             return (
               <React.Fragment>
                 <Field
@@ -83,8 +84,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                   label="First Name"
                   required
                   showLabel
-                  errors={props.errors.firstName}
-                  touched={props.touched.firstName}
+                  errors={innerProps.errors.firstName}
+                  touched={innerProps.touched.firstName}
                 />
                 <Field
                   className="Form__input"
@@ -93,8 +94,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                   label="Last Name"
                   required
                   showLabel
-                  errors={props.errors.lastName}
-                  touched={props.touched.lastName}
+                  errors={innerProps.errors.lastName}
+                  touched={innerProps.touched.lastName}
                 />
                 <Field
                   className="Form__input"
@@ -103,8 +104,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                   label="Your Email"
                   required
                   showLabel
-                  errors={props.errors.email}
-                  touched={props.touched.email}
+                  errors={innerProps.errors.email}
+                  touched={innerProps.touched.email}
                 />
                 <Field
                   component="textarea"
@@ -113,8 +114,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                   label="How can I help you?"
                   required
                   showLabel
-                  errors={props.errors.comments}
-                  touched={props.touched.comments}
+                  errors={innerProps.errors.comments}
+                  touched={innerProps.touched.comments}
                   spellCheck={true}
                   rows={10}
                 />

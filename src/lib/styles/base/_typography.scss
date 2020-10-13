@@ -10,7 +10,7 @@ html {
 body {
   @include text-std;
   @include font-body;
-  color: v(black);
+  color: var(--cd-black);
 }
 
 p,
@@ -44,7 +44,7 @@ blockquote {
   @include text-lg;
   margin: $mg-vertical-sm 0 ($mg-vertical-sm * 1.5);
   padding-left: $mg-vertical-sm;
-  color: v(cd-medium-gray);
+  color: var(--cd-medium-gray);
 
   @include breakpoint(medium up) {
     margin: $mg-vertical 0 ($mg-vertical * 1.25);
@@ -53,13 +53,13 @@ blockquote {
 
   b,
   strong {
-    color: v(black);
+    color: var(--cd-black);
   }
 }
 
 hr {
   margin: $mg-vertical 0;
-  border: 1px solid v(cd-green);
+  border: 1px solid var(--cd-green);
   border-width: 1px 0 0 0;
 }
 
@@ -69,8 +69,8 @@ pre {
   display: inline-block;
   padding: 0 5px;
   border-radius: 4px;
-  background: v(cd-xlight-gray);
-  color: v(color-text-pre);
+  background: var(--cd-xlight-gray);
+  color: var(--color-text-pre);
   font-family: $ff-code;
 }
 
@@ -92,7 +92,7 @@ code {
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   border-radius: rem(4);
-  background: v(cd-xlight-gray);
+  background: var(--cd-xlight-gray);
 }
 
 a {
@@ -104,7 +104,7 @@ h1,
   @include text-xxl;
   @include font-heading;
   margin: ($mg-vertical-sm / 1.6) 0;
-  color: v(color-text-heading);
+  color: var(--color-text-heading);
 
   @include breakpoint(medium) {
     margin: ($mg-vertical-sm * 1.4) 0;
@@ -116,7 +116,7 @@ h2,
   @include text-xl;
   @include font-heading;
   margin: ($mg-vertical-sm * 1.125) 0;
-  color: v(color-text-heading);
+  color: var(--color-text-heading);
 
   @include breakpoint(medium) {
     margin: ($mg-vertical-sm * 2) 0;
@@ -128,7 +128,7 @@ h3,
   @include text-lg;
   @include font-heading;
   margin: $mg-vertical-sm 0;
-  color: v(cd-medium-gray);
+  color: var(--cd-medium-gray);
   line-height: 1.06;
 }
 
@@ -150,6 +150,6 @@ h6,
   @include text-sm;
   @include font-heading;
   margin: ($mg-vertical-sm / 2) 0;
-  color: v(cd-light-gray);
+  color: var(--cd-light-gray);
   line-height: 1.2;
 }

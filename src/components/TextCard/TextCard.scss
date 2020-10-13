@@ -1,10 +1,10 @@
 .TextCard {
   position: relative;
   padding: rem(40) rem(20) rem(20);
-  border: 1px solid v(cd-xlight-gray);
+  border: 1px solid var(--cd-xlight-gray);
   border-top-left-radius: rem(10);
   border-bottom-right-radius: rem(10);
-  background: v(white);
+  background: var(--cd-white);
 
   @include breakpoint(medium) {
     padding: rem(60) rem(40) rem(40);

@@ -91,8 +91,7 @@ export function getBreakpointQueryObject(
               bp = 0;
               named = false;
             }
-          } else {
-            if (isNaN(bp as any)) {
+          } else if (isNaN(bp as any)) {
               console.warn(
                 'All values in your `breakpoints` variable must be in pixels.'
               );
@@ -101,7 +100,6 @@ export function getBreakpointQueryObject(
             } else {
               bp = parseFloat(bp);
             }
-          }
         }
       } else if (bp.match(unitRegex)) {
         if (bp.indexOf('px') !== -1) {

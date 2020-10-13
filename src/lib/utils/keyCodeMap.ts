@@ -517,4 +517,4 @@ keyCodeMap.isCharacterKey = function isCharacterKey(keyCode: number) {
   }
 };
 
-export default keyCodeMap;
+export { keyCodeMap };

@@ -1,7 +1,7 @@
 .Capabilities {
   @include section-padded-y;
   @include full-width;
-  background: v(white);
+  background: var(--cd-white);
 
   &__container {
     @include make-container(wide);
@@ -20,8 +20,8 @@
     padding: 0;
 
     @include breakpoint(medium) {
-      gap: $mg-vertical;
       grid-template-columns: repeat(2, 1fr);
+      gap: $mg-vertical;
       margin: #{$mg-vertical / 2} 0 0;
     }
 

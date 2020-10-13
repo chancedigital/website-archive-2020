@@ -163,16 +163,3 @@
   }
   @return unquote($src);
 }
-
-/// Shorthand for defining CSS custom properties.
-/// @access public
-/// @param {*} $var - Variable name
-/// @param {*} $fallback - Fallback value if the variable is not found.
-/// @return {*} - CSS custom property value.
-@function v($var, $fallback: null) {
-  @if ($fallback) {
-    @return var(--#{$var}, #{$fallback});
-  } @else {
-    @return var(--#{$var});
-  }
-}

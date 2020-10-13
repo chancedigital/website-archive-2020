@@ -1,4 +1,4 @@
-@mixin button-box-shadow($color: v(cd-green)) {
+@mixin button-box-shadow($color: var(--cd-green)) {
   box-shadow: 4px -4px 0 transparent;
 
   &:hover:not(:active) {
@@ -7,7 +7,7 @@
 }
 
 .Button {
-  @include button-box-shadow(v(cd-green));
+  @include button-box-shadow(var(--cd-green));
 
   &,
   &:link,
@@ -27,10 +27,10 @@
       box-shadow 200ms ease-out,
       border 200ms ease-out,
       color 200ms ease-out;
-    border: 2px solid v(cd-green);
+    border: 2px solid var(--cd-green);
     border-radius: 0;
     background: transparent;
-    color: v(black);
+    color: var(--cd-black);
     font-size: rem(14);
     font-weight: 600;
     text-align: center;
@@ -50,14 +50,14 @@
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 500ms cubic-bezier(0.9, -0.05, 0.25, 1);
-    background: v(cd-green);
+    background: var(--cd-green);
   }
 
   &:hover,
   &:focus {
     transform: translate(0, 0);
-    border-color: v(white);
-    color: v(white);
+    border-color: var(--cd-white);
+    color: var(--cd-white);
     text-decoration: none;
 
     &:before {
@@ -85,9 +85,9 @@
 
     &:hover,
     &:focus {
-      border-color: v(cd-green);
+      border-color: var(--cd-green);
       background: transparent;
-      color: v(black);
+      color: var(--cd-black);
     }
   } // [disabled]
 
@@ -98,61 +98,61 @@
   } // --block
 
   &--secondary {
-    @include button-box-shadow(v(cd-red));
+    @include button-box-shadow(var(--cd-red));
 
     &,
     &:link,
     &:visited {
-      border-color: v(cd-red);
+      border-color: var(--cd-red);
     }
 
     &:hover,
     &:focus {
-      border-color: v(white);
-      color: v(white);
+      border-color: var(--cd-white);
+      color: var(--cd-white);
     }
 
     &:before {
-      background: v(cd-red);
+      background: var(--cd-red);
     }
 
     &[disabled] {
       &:hover,
       &:focus {
-        border-color: v(cd-red);
+        border-color: var(--cd-red);
         background: transparent;
-        color: v(black);
+        color: var(--cd-black);
       }
     }
 
   } // --secondary
 
   &--tertiary {
-    @include button-box-shadow(v(black));
+    @include button-box-shadow(var(--cd-black));
 
     &,
     &:link,
     &:visited {
-      border-color: v(black);
-      color: v(black);
+      border-color: var(--cd-black);
+      color: var(--cd-black);
     }
 
     &:hover,
     &:focus {
-      border-color: v(white);
-      color: v(white);
+      border-color: var(--cd-white);
+      color: var(--cd-white);
     }
 
     &:before {
-      background: v(black);
+      background: var(--cd-black);
     }
 
     &[disabled] {
       &:hover,
       &:focus {
-        border-color: v(black);
+        border-color: var(--cd-black);
         background: transparent;
-        color: v(black);
+        color: var(--cd-black);
       }
     }
   } // --tertiary
@@ -162,19 +162,19 @@
     &,
     &:link,
     &:visited {
-      border-color: v(white);
+      border-color: var(--cd-white);
       background: none;
-      color: v(white);
+      color: var(--cd-white);
     }
 
     &:hover,
     &:focus {
-      border-color: v(white);
-      color: v(cd-green);
+      border-color: var(--cd-white);
+      color: var(--cd-green);
     }
 
     &:before {
-      background: v(white);
+      background: var(--cd-white);
     }
   } // --inverted
 
@@ -209,18 +209,18 @@ input[type="submit"] {
   @extend .Button;
 
   &.Button {
-    @include button-hover-override(v(cd-green));
+    @include button-hover-override(var(--cd-green));
   }
 
   &.Button--secondary {
-    @include button-hover-override(v(cd-red));
+    @include button-hover-override(var(--cd-red));
   }
 
   &.Button--tertiary {
-    @include button-hover-override(v(black));
+    @include button-hover-override(var(--cd-black));
   }
 
   &.Button--inverted {
-    @include button-hover-override(v(white));
+    @include button-hover-override(var(--cd-white));
   }
 }

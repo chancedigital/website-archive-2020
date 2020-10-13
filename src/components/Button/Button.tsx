@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Link } from 'gatsby';
-import { isValidUrl } from '@lib/utils';
+import Link from '@components/Link';
 import './Button.scss';
 
 export interface ButtonProps {
@@ -29,7 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   htmlType = 'button',
   loading = false,
-  onClick: onClick,
+  onClick,
   rel: relProp,
   size,
   target,
@@ -77,25 +76,21 @@ export const Button: React.FC<ButtonProps> = ({
   // If the href is pointing to a valid URL, we need to use a standard anchor
   // tag and use the `href` prop instead of the `to` prop
   let LinkEl: typeof Link | string = Link;
-  let linkHrefProps: any = { to: href! };
-  if (href && (isValidUrl(href) || href.indexOf('#') === 0)) {
-    LinkEl = 'a';
-    linkHrefProps = { href };
-  }
 
   // Determine which props to pass to link buttons
   const linkProps = {
     className: classNames,
     rel: relProp || target === '_blank' ? 'noopener noreferrer' : undefined,
     target,
-    ...linkHrefProps,
     ...rest,
   };
 
-  const inner = <span className="Button__inner">{children}</span>
+  const inner = <span className="Button__inner">{children}</span>;
 
   return href ? (
-    <LinkEl {...linkProps}>{inner}</LinkEl>
+    <LinkEl {...linkProps} href={href}>
+      {inner}
+    </LinkEl>
   ) : (
     <NonLinkEl {...nonLinkProps}>{inner}</NonLinkEl>
   );

@@ -6,7 +6,7 @@
   $self: &;
   margin-top: $grid-gap-sm;
   margin-bottom: $grid-gap-sm;
-  color: v(white);
+  color: var(--cd-white);
 
   @include breakpoint( medium ) {
     margin-top: $grid-gap;
@@ -14,12 +14,12 @@
   }
 
   ::selection {
-    background: v(white);
-    color: v(black);
+    background: var(--cd-white);
+    color: var(--cd-black);
   }
 
   [data-whatintent="keyboard"] & :focus {
-    outline: v(white) auto 5px;
+    outline: var(--cd-white) auto 5px;
   }
 
   /* .cdLogo {
@@ -59,7 +59,7 @@
     &:hover,
     &:focus {
       text-decoration: underline;
-      text-decoration-color: v(cd-gold);
+      text-decoration-color: var(--cd-gold);
 
       #{$self}__cdLogo {
         // opacity: 0.7;

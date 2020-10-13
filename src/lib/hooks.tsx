@@ -1,18 +1,14 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 import ResizeObserver from 'resize-observer-polyfill';
-import {
-  useRef,
-  useEffect,
-  useLayoutEffect,
-  useState,
-  DependencyList,
-  EffectCallback,
-  RefObject,
-} from 'react';
-import { json2mq } from '@lib/utils';
-import { getBreakpointQueryObject } from '@lib/utils';
+import * as React from 'react';
+import { json2mq, getBreakpointQueryObject, canUseDOM } from '@lib/utils';
 
-type Effect = (effect: EffectCallback, deps?: DependencyList) => void;
+const CAN_USE_DOM = canUseDOM();
+
+type Effect = (
+  effect: React.EffectCallback,
+  deps?: React.DependencyList
+) => void;
 
 export interface DOMRectReadOnly {
   readonly x: number;
@@ -30,23 +26,30 @@ export interface ScrollPosition {
   y: number;
 }
 
-const isBrowser = typeof window !== 'undefined';
+/**
+ * On the server, React emits a warning when calling `useLayoutEffect`.
+ * This is because neither `useLayoutEffect` nor `useEffect` run on the server.
+ * We use this safe version which suppresses the warning by replacing it with a noop on the server.
+ *
+ * See: https://reactjs.org/docs/hooks-reference.html#uselayouteffect
+ */
+export const useLayoutEffect = CAN_USE_DOM ? React.useLayoutEffect : () => {};
 
 function getScrollPosition(): ScrollPosition {
-  return isBrowser
+  return CAN_USE_DOM
     ? { x: window.pageXOffset, y: window.pageYOffset }
     : { x: 0, y: 0 };
 }
 
 /**
- * Creates a hook for either `useEffect` or `useLayoutEffect`
+ * Creates a hook for either `React.useEffect` or `useLayoutEffect`
  * const isDesktop = useMediaLayout({ minWidth: 500 }, true);
  */
 const createUseMedia = (effect: Effect) => (
   rawQuery: any,
   defaultState: boolean = false
 ) => {
-  const [state, setState] = useState(defaultState);
+  const [state, setState] = React.useState(defaultState);
   const query = json2mq(rawQuery);
   effect(() => {
     let mounted = true;
@@ -72,12 +75,12 @@ const createUseMedia = (effect: Effect) => (
  * Store a component's previous value in a ref for use after the value changes.
  */
 export function usePrevious(value: any): any {
-  const ref = useRef();
-  useEffect(() => void (ref.current = value), [value]);
+  const ref = React.useRef();
+  React.useEffect(() => void (ref.current = value), [value]);
   return ref.current;
 }
 
-export const useMedia = createUseMedia(useEffect);
+export const useMedia = createUseMedia(React.useEffect);
 
 export const useMediaLayout = createUseMedia(useLayoutEffect);
 
@@ -96,18 +99,18 @@ type IDState = string;
 let _id = nanoid();
 
 export const useId = (initialValue?: string | number): IDState => {
-  const [id, setId] = useState<IDState>(
+  const [id, setId] = React.useState<IDState>(
     initialValue ? String(initialValue) : _id
   );
-  useEffect(() => setId(nanoid()), []);
+  React.useEffect(() => setId(nanoid()), []);
   return id;
 };
 
 export const useMeasure = (
-  ref: RefObject<HTMLElement | null>,
+  ref: React.RefObject<HTMLElement | null>,
   deps: any[] = []
 ) => {
-  const [bounds, setContentRect] = useState<DOMRectReadOnly>(
+  const [bounds, setContentRect] = React.useState<DOMRectReadOnly>(
     // DOMRectReadOnly.fromRect()
     { x: 0, y: 0, width: 0, height: 0, top: 0, right: 0, bottom: 0, left: 0 }
   );
@@ -135,14 +138,14 @@ export const useMeasure = (
 };
 
 export const useScrollPosition = (): ScrollPosition => {
-  const [position, setScrollPosition] = useState<ScrollPosition>(
+  const [position, setScrollPosition] = React.useState<ScrollPosition>(
     getScrollPosition()
   );
 
-  useEffect((): any => {
+  React.useEffect((): any => {
     let requestRunning: number | null = null;
     function handleScroll() {
-      if (isBrowser && requestRunning === null) {
+      if (CAN_USE_DOM && requestRunning === null) {
         requestRunning = window.requestAnimationFrame(() => {
           setScrollPosition(getScrollPosition());
           requestRunning = null;
@@ -150,7 +153,7 @@ export const useScrollPosition = (): ScrollPosition => {
       }
     }
 
-    if (isBrowser) {
+    if (CAN_USE_DOM) {
       window.addEventListener('scroll', handleScroll);
       return () => void window.removeEventListener('scroll', handleScroll);
     }
@@ -170,13 +173,13 @@ export const useScrollYPosition = (): number => {
 };
 
 export const useInterval = (callback: () => any, delay: number) => {
-  const savedCallback = useRef<any>();
+  const savedCallback = React.useRef<any>();
 
-  useEffect(() => {
+  React.useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
-  useEffect((): void | (() => void) => {
+  React.useEffect((): void | (() => void) => {
     function tick() {
       savedCallback.current();
     }
@@ -194,8 +197,8 @@ export const useAnimationEndListener = (
   const handleAnimationEnd = (event: AnimationEvent) => {
     callback(event, element);
   };
-  useEffect((): any => {
-    if (isBrowser) {
+  React.useEffect((): any => {
+    if (CAN_USE_DOM) {
       element.addEventListener('animationend', handleAnimationEnd);
       return () =>
         element.removeEventListener('animationend', handleAnimationEnd);

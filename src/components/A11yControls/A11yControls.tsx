@@ -65,7 +65,7 @@ export const A11yControls: React.FC<A11yControlsProps> = ({
   className,
   disabled = false,
   loading = false,
-  onClick: onClick,
+  onClick,
   ...rest
 }) => {
   const menuId = `a11y-menu-${useId()}`;

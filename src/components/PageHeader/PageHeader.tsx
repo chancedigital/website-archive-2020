@@ -12,7 +12,7 @@ export interface PageHeaderProps extends Element<'section'> {
   buttonText?: string;
   fullHeight?: boolean;
   innerContent: string;
-  renderImage?: ({  }: any) => any;
+  renderImage?: (props: any) => any;
   title: string;
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Link } from 'gatsby';
+import Link from '@components/Link';
 // import { TransitionLink as Link } from 'gatsby-plugin-transition-link';
 import { GatsbyLinkProps } from 'gatsby-link';
 import { isValidUrl } from '@lib/utils';
@@ -13,6 +13,7 @@ export interface MenuLinkProps extends TMenuLinkProps {
   label: string | JSX.Element;
   redirect?: string;
   onClick?(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+  isHashLink?: boolean;
 }
 
 const MenuLink: React.FC<MenuLinkProps> = ({
@@ -41,19 +42,14 @@ const MenuLink: React.FC<MenuLinkProps> = ({
     );
   }
   if (href) {
-    const hrefIsUrl = isValidUrl(href);
-    return hrefIsUrl || href.indexOf('/') === -1 ? (
-      <a
+    return (
+      <Link
         className={classNames}
         href={href}
         target={target}
         rel={rel}
-        {...props}
+        {...(props as any)}
       >
-        {label}
-      </a>
-    ) : (
-      <Link className={classNames} to={href} target={target} rel={rel}>
         {label}
       </Link>
     );

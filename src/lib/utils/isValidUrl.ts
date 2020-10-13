@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 /**
  * Tests whether a string is a valid URL.
  * @param str
